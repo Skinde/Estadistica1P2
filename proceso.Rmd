@@ -6,82 +6,114 @@ output:
   pdf_document: default
 ---
 
-En este estudio intentamos encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
+# Introducción
+Existen diferentes técnicas de aprendizaje, las que a lo largo del tiempo han evolucionado siempre con el fin de obtener mejores resultados. La diversificación de métodos de enseñanza ha sido parte de este proceso. Para Lozada y Betancour (2016), la necesidad constante de actualizar los distintos métodos de enseñanza, para la mejora de la calidad educativa, es dependiente de los contenidos que se imparten, las necesidades de la sociedad y la cobertura. Es por eso que los enfoques educativos en los que los profesores son vistos como el eje del proceso educativo resulta mecánico y poco productivo, ya que no demanda suficiente interacción por parte del alumno. 
+Los nuevos enfoques educativos deben proporcionar herramientas que impliquen mayor interacción con los alumnos y que seguidamente cumpla con los objetivos de formación que se relacionan con la preparación profesional y desarrollo de competencias que permitan una óptima integración del conocimiento. Es en este punto donde aparece la *Gamificación*. La *Gamificación* es un método de aprendizaje que usa elementos de juego como complemento de los procesos educativos. Esta técnica resulta muy útil tanto en educación básica como educación superior. El carácter lúdico e interactivo que presenta facilita la interiorización de conocimiento a los estudiantes. El objetivo de la *Gamificación* no es crear un juego por crear, sino analogar de alguna manera el sistema puntuación-recompensa-objetivo que funciona en los juegos.  
+Es por ello que en este estudio intentamos encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
 
+En este estudio intentamos cambio encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
+
+
+## Carga de datos y librerías
 Primero la carga de data y la instalación de los paquetes.
+
+
 ```{r}
 library(readr)
 library(dplyr)
 library(ggplot2)
-library(lubridate)
 library(stringr)
+library(tidyverse)
+library(lubridate)
 
+
+gantt <- read.csv("gant.csv", h=T)
 DF <- read_csv("data.csv")
 ```
 
-LIMPIEZA DE TIEMPO!!!
-```{r}
-DF$`Duración de la experiencia` <- gsub("\\.", ":", DF$`Duración de la experiencia`)
-DF$`Duración de la experiencia` <- gsub(" ", "", DF$`Duración de la experiencia`)
-DF$`Duración de la experiencia` <- gsub("minutos", "", DF$`Duración de la experiencia`)
-DF$`Duración de la experiencia` <- gsub("min", "", DF$`Duración de la experiencia`)
-DF$`Duración de la experiencia` <- gsub("pm", "", DF$`Duración de la experiencia`)
+## Renombramiento de las variables
 
+```{r}
+
+DF %>% rename(correo=`Ingrese su correo de UTEC!!`, tiempo=`Duración de la experiencia`, edad = `¿Cual es tu edad?`,
+              sexo=`¿Con que sexo te identificas?`, ciclo=`¿En que ciclo te encuentras?`, carrera=`¿Cual es tu carrera?`, 
+              experiencia_armado=`¿Cuál es tu nivel de experiencia armando computadoras?`,
+              frecuencia_video=`¿Con qué frecuencia juegas videojuegos?`, 
+              tipo_experiencia=`Qué experiencia realizaste:`,
+              
+              
+              p1=`Regula y proporciona la potencia para que se activen todos los componentes de la PC:`,
+              p2=`Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:`,
+              p3=`¿Dónde se conecta o instala la memoria (RAM)?`,
+              p4=`El CPU se calienta muy rápido; por ello, se le conecta un refrigerador o Cooler para regular el calor de este. Esta afirmación es:`,
+              p5=`¿Dónde se coloca la pasta térmica?`,
+              p6=`Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:`,
+              p7=`¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?`,
+              p8=`Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.`,
+              
+              
+              satisfaccion=`Nivel de satisfacción al realizar el juego o leer el documento pdf:`,
+              conoci_previo=`¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?`
+              ) ->DF
 ```
 
-
+## Limpieza de datos
 ```{r}
+DF$tiempo <- gsub("\\.", ":", DF$tiempo)
+DF$tiempo <- gsub(" ", "", DF$tiempo)
+DF$tiempo <- gsub("minutos", "", DF$tiempo)
+DF$tiempo <- gsub("min", "", DF$tiempo)
+DF$tiempo <- gsub("pm", "", DF$tiempo)
 
 iterator = 1
-for (palabras in DF$`Duración de la experiencia`){
+for (palabras in DF$tiempo){
   if(!is.na(palabras)){  
     if(nchar(palabras)<3){
-            DF$`Duración de la experiencia`[iterator] <- paste0(DF$`Duración de la experiencia`[iterator],":00")
-            #print(iterator)
+            DF$tiempo[iterator] <- paste0(DF$tiempo[iterator],":00")
+            
       }
     }
           
     iterator = iterator + 1
 }
 
-DF$`Duración de la experiencia`
-DF <- DF[complete.cases(DF$`Duración de la experiencia`),]
+DF <- DF[complete.cases(DF$tiempo),]
 Duracion <- c()
 
-for (duracion in DF$`Duración de la experiencia`)
+for (duracion in DF$tiempo)
 {
     minuto <- str_extract(duracion, "[0-9]*")
     Duracion <- append(Duracion, strtoi(minuto))
 }
-
-Duracion
+DF$tiempo <-Duracion
 ```
+
 ESTE CODIGO ARREGLA EL PROBLEMA DE "LEER DOCUMENTO" Y "LEER DOCUMENTO PDF"
+
 ```{r}
 iterator = 1
-for (palabras in DF$`Qué experiencia realizaste:`){
+for (palabras in DF$tipo_experiencia){
   if(!is.na(palabras)){  
     if(palabras=="Leer Documento"){
-            DF$`Qué experiencia realizaste:`[iterator] <- paste0(DF$`Qué experiencia realizaste:`[iterator]," PDF")
+            DF$tipo_experiencia[iterator] <- paste0(DF$tipo_experiencia[iterator]," PDF")
             #print(iterator)
       }
     }
           
     iterator = iterator + 1
 }
-DF$`Qué experiencia realizaste:`
 ```
-
 
 Para el filtrado hemos decidido requerir de datos solo a "Qué experiencia realizaste", esto es debido a que no es posible realizar el estudio si no se tiene a cual de los dos grupos pertenece.
 
 
 
+## Calculo de puntaje
 Luego hemos calculado las respuestas correctas "a mano", hemos considerado que los NA como respuestas validas pero con valor de 0.
 ```{r}
 score_vector = c()
 
-for (ans in DF$`Regula y proporciona la potencia para que se activen todos los componentes de la PC:`)
+for (ans in DF$p1)
 {
   if (!is.na(ans))
   {
@@ -102,7 +134,7 @@ for (ans in DF$`Regula y proporciona la potencia para que se activen todos los c
 }
 
 iterator = 1
-for (ans in DF$`Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:`)
+for (ans in DF$p2)
 {
   if (!is.na(ans))
   {
@@ -117,7 +149,7 @@ for (ans in DF$`Cuenta con sus propios procesadores y memoria interna que proces
 
 
 iterator = 1
-for (ans in DF$`Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:`)
+for (ans in DF$p6)
 {
   if (!is.na(ans))
   {
@@ -132,7 +164,7 @@ for (ans in DF$`Responsable realiza cálculos basados en la interpretación de l
 
 
 iterator = 1
-for (ans in DF$`Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.`)
+for (ans in DF$p8)
 {
   if (!is.na(ans))
   {
@@ -146,7 +178,7 @@ for (ans in DF$`Almacena todos los datos del sistema operativo, los programas y 
 }
 
 iterator = 1
-for (ans in DF$`¿Dónde se conecta o instala la memoria (RAM)?`)
+for (ans in DF$p3)
 {
   if (!is.na(ans))
   {
@@ -160,7 +192,7 @@ for (ans in DF$`¿Dónde se conecta o instala la memoria (RAM)?`)
 }
 
 iterator = 1
-for (ans in DF$`¿Dónde se coloca la pasta térmica?`)
+for (ans in DF$p5)
 {
   if (!is.na(ans))
   {
@@ -174,7 +206,7 @@ for (ans in DF$`¿Dónde se coloca la pasta térmica?`)
 }
 
 iterator = 1
-for (ans in DF$`¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?`)
+for (ans in DF$p7)
 {
   if (!is.na(ans))
   {
@@ -195,12 +227,14 @@ DF_scored <- cbind(DF, score_vector)
 ```
 
 Luego de medir el puntaje hemos dividido las respuestas en los dos grupos correspondientes. Por ultimo hemos hecho una resta de filas debido a que hubo un imbalance de experimentos. Notar que aunque se quitaron filas y se puede considerar *MANIPULACIÓN DE DATOS* dichas columnas fueron removidas sin ningún tipo de "filtro" en particular mas que el orden en el que llegaron. Por lo que, se puede considerar "Aleatorio" las filas que se quitaron. 
+
+
 ```{r}
-class_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
+class_learning <- DF_scored[DF_scored$tipo_experiencia == 'Leer Documento PDF',]
 
 
+game_learning <- DF_scored[DF_scored$tipo_experiencia == 'Jugar PC Simulator',]
 
-game_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Jugar PC Simulator',]
 
 game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_learning))
 
@@ -211,15 +245,17 @@ boxplot(data,names = c("PDF", "Juego"))
 
 Tambien podemos medir la nota contra la experiencia de cada alumno
 
-Grafica para los que hirieron clase de su nivel de experiencia armando pc contra su puntaje
+
+Grafica para los que hirieron clase de su nivel de experiencia armando pc contra su puntaje (PDF)
+
 ```{r}
 score_mean <- c(0,0,0,0,0)
 number_to_divide <- c(0,0,0,0,0)
 
 for (row in 1:nrow(class_learning))
 {
-  score_mean[class_learning[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] <- score_mean[class_learning[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] + class_learning[row, "score_vector"]
-  number_to_divide[class_learning[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] <- number_to_divide[class_learning[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] + 1
+  score_mean[class_learning[row, "experiencia_armado"]] <- score_mean[class_learning[row, "experiencia_armado"]] + class_learning[row, "score_vector"]
+  number_to_divide[class_learning[row, "experiencia_armado"]] <- number_to_divide[class_learning[row, "experiencia_armado"]] + 1
 }
 
 for (iterator in 1:5)
@@ -232,9 +268,14 @@ possible <- c(1,2,3,4,5)
 
 plot(possible, score_mean, xlab = "Nivel De Experiencia", ylab = "Promedio de puntaje")
 
+
 ```
 
-Grafica para los que hirieron videojuego de su nivel de experiencia armando pc contra su puntaje
+
+
+Grafica para los que hirieron videojuego de su nivel de experiencia armando pc contra su puntaje (VIDEOJUEGO)
+
+
 ```{r}
 score_mean <- score_mean[complete.cases(score_mean)]
 score_mean <- c(0,0,0,0,0)
@@ -242,8 +283,8 @@ number_to_divide <- c(0,0,0,0,0)
 
 for (row in 1:nrow(game_learning_cortado))
 {
-  score_mean[game_learning_cortado[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] <- score_mean[game_learning_cortado[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] + game_learning_cortado[row, "score_vector"]
-  number_to_divide[game_learning_cortado[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] <- number_to_divide[game_learning_cortado[row, "¿Cuál es tu nivel de experiencia armando computadoras?"]] + 1
+  score_mean[game_learning_cortado[row, "experiencia_armado"]] <- score_mean[game_learning_cortado[row, "experiencia_armado"]] + game_learning_cortado[row, "score_vector"]
+  number_to_divide[game_learning_cortado[row, "experiencia_armado"]] <- number_to_divide[game_learning_cortado[row, "experiencia_armado"]] + 1
 }
 
 for (iterator in 1:5)
@@ -257,7 +298,7 @@ plot(possible, score_mean, xlab = "Nivel De Experiencia", ylab = "Promedio de pu
 
 ```
 
-Grafica de los que jugaron clase de su nivel de experiencia con los componentes de una computadora vs su puntaje
+Grafica de los que jugaron clase de su nivel de experiencia con los componentes de una computadora vs su puntaje (PDF)
 
 ```{r}
 score_mean <- score_mean[complete.cases(score_mean)]
@@ -266,8 +307,8 @@ number_to_divide <- c(0,0,0,0,0)
 
 for (row in 1:nrow(class_learning))
 {
-  score_mean[class_learning[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] <- score_mean[class_learning[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] + class_learning[row, "score_vector"]
-  number_to_divide[class_learning[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] <- number_to_divide[class_learning[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] + 1
+  score_mean[class_learning[row, "conoci_previo"]] <- score_mean[class_learning[row, "conoci_previo"]] + class_learning[row, "score_vector"]
+  number_to_divide[class_learning[row, "conoci_previo"]] <- number_to_divide[class_learning[row, "conoci_previo"]] + 1
 }
 
 for (iterator in 1:5)
@@ -280,7 +321,7 @@ possible <- c(1,2,3,4,5)
 plot(possible,score_mean, xlab = "Nivel De Experiencia (Componentes)", ylab = "Promedio de puntaje", yaxp=c(0,7,20))
 
 ```
-Grafica de los que jugaron videojuego y su nivel de experiencia con los componentes de una computadora vs su puntaje
+Grafica de los que jugaron videojuego y su nivel de experiencia con los componentes de una computadora vs su puntaje (VIDEOJUEGO)
 
 ```{r}
 score_mean <- score_mean[complete.cases(score_mean)]
@@ -289,8 +330,8 @@ number_to_divide <- c(0,0,0,0,0)
 
 for (row in 1:nrow(game_learning_cortado))
 {
-  score_mean[game_learning_cortado[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] <- score_mean[game_learning_cortado[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] + game_learning_cortado[row, "score_vector"]
-  number_to_divide[game_learning_cortado[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] <- number_to_divide[game_learning_cortado[row, "¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"]] + 1
+  score_mean[game_learning_cortado[row, "conoci_previo"]] <- score_mean[game_learning_cortado[row, "conoci_previo"]] + game_learning_cortado[row, "score_vector"]
+  number_to_divide[game_learning_cortado[row, "conoci_previo"]] <- number_to_divide[game_learning_cortado[row, "conoci_previo"]] + 1
 }
 
 for (iterator in 1:5)
@@ -305,14 +346,15 @@ plot(possible,score_mean, xlab = "Nivel De Experiencia (Componentes)", ylab = "P
 ```
 
 Tambien podemos ver el tiempo vs nota
-```{r}
-seconds <- as.numeric(as.period(ms(DF_scored$`Duración de la experiencia`), unit = "sec"))
-DF_scored <- cbind(DF_scored, seconds)
-```
+
 
 ```{r}
-plot(DF_scored$seconds, DF_scored$score_vector, pch = 20, col = rgb(0, 0, 0, 0.2), xlab="Tiempo de aprendizaje (Segundos)", ylab="Puntaje")
+
+plot(DF_scored$tiempo, DF_scored$score_vector, pch = 20, col = rgb(0, 0, 0, 0.2), xlab="Tiempo de aprendizaje (minutos)", ylab="Puntaje")
+
 ```
+
+
 
 No parece haber una influencia del tiempo 
 
@@ -321,74 +363,15 @@ Con 31 participantes por grupo (62 total) no hemos notado una diferencia signifi
 
 
 
-```{r}
-unique(DF$`Qué experiencia realizaste:`)
-```
 INICIO GANT
 
-```{r}
-library(tidyverse)
-library(lubridate)
-gantt <- read.csv("gant.csv", h=T)
-```
-
-
-
-```{r}
-gantt$Inicio <- gsub("\\.", "-", gantt$Inicio)
-gantt$Fin <- gsub("\\.", "-", gantt$Fin)
-gantt$Inicio <- ymd(gantt$Inicio)
-gantt$Fin <- ymd(gantt$Fin)
-gantt.melt <- gantt%>%
-  tidyr::pivot_longer(col = c(Inicio,Fin))
-gantt.melt
-```
-```{r}
-today <- as.Date('2022-05-06')
-#Sys.Date()
-
-p1 <- ggplot(gantt.melt,aes(x = value,y = Actividad,colour = "red"))
-p1 <- p1 + geom_line(alpha= 0.5, size = 7)
-p1 <- p1 + geom_label(aes(label=format(value,"%d %b")),vjust = -0.5, angle = 45, size = 3, color = "black")
-p1 <- p1 + theme_bw()
-p1 <- p1 + geom_vline(xintercept = today,color = "grey", size = 2, alpha = 0.5 )
-p1 <- p1 + labs(title = "Gant chart")
-p1 <- p1 + labs(subtitle = "XDD")
-p1 <- p1 + labs(caption = "#XD")
-p1 <- p1 + labs(x="Date")
-p1 <- p1 +  labs (y = "Items")
-p1 <- p1 +  scale_color_manual(values = c("red","blue"))
-p1 <- p1 +  theme(legend.position = "none")
-p1 <- p1 + scale_x_date(name = "Dates"
-                        , date_labels = "%d %b"
-                        , date_breaks = "1 week"
-                        , minor_breaks = "2 day"
-                        , sec.axis = dup_axis(name = "week number",labels =   scales::date_format("%W"))
-                        )
-  
-p1
-```
-
-
-
-
 
 ```{r}
 gantt <- read.csv("gant.csv", h=T)
-gantt
 acts <- c("Primer contacto con equipo de trabajo", "Reunion para definir temas de posible estudio estadistico","Redaccion de informe para el entregable P0", "Espera de Feeback de entregable P0", "Reunion para coordinar el tema final para el estudio estadistico", "Postulacion de propuestas de temas por parte de los miembros", "Seleccion de propuestas de tema por parte de los miembros", "Reunion con Profesor Jose Renom para feeback del tema escogido", "Reunion de coordinacion de parametros del experimento", "Aplicacion del experimentos al publico objetivo", "Filtracion de data en R", "Desarrollo de Informe en Rnote", "Desarrollo de Presentacion Oral en R Presentations", "Entrega de Informe y Presentacion a Canvas")
 els <- c("Entregable P0", "Tema de Investigacion", "Parametros del experimento", "Desarrollo del Experimento", "Entregable P1")
 
-length(acts)
-
 g.gantt <- gather(gantt, "state", "date", 4:5) %>% mutate(date = as.Date(date, "%Y.%m.%d"), Actividad=factor(Actividad, acts[length(acts):1]), Elemento.del.Proyecto =factor(Elemento.del.Proyecto, els))
-g.gantt
-#demosurv <- data.frame(state=rep(c("Inicio","Fin"), each=52), date=c(seq.Date(as.Date("2022.03.21"), as.Date("2022.05.06"), "3 week"), seq.Date(as.Date("2022.03.21"), as.Date("2022.05.06"), "3 week")), Actividad=rep(c(8.55,9.45), each=52),'Elemento del Proyecto'="", Item=rep(42:93, 2))
-#head(g.gantt$Actividad)
-```
-
-```{r}
-
 
 actcols <- c("#548235", "#2E75B6", "#BF9000", "#7030A0", "#cd6600")
 ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)) +
@@ -406,280 +389,3 @@ ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)
 
 
 
----------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-DF <- read_csv("data.csv")
-```
-
-
-
-Filtrando todos los NA
-
-
-```{r}
-DF <- DF[complete.cases(DF),]
-```
-Medir puntaje 
-```{r}
-score_vector = c()
-
-for (ans in DF$`Regula y proporciona la potencia para que se activen todos los componentes de la PC:`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Fuente de alimentación (PSU) o sistema de alimentación")
-    {
-      score_vector <- append(score_vector, 1)
-    }
-    else
-    {
-      score_vector <- append(score_vector, 0)
-    }  
-  }
-  else
-  {
-    score_vector <- append(score_vector, 0)
-  }
-  
-}
-
-iterator = 1
-for (ans in DF$`Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Tarjeta gráfica (GPU)")
-    {
-      score_vector[iterator] = score_vector[iterator] + 1
-    }  
-  }
-  
-  iterator = iterator + 1
-}
-
-
-iterator = 1
-for (ans in DF$`Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Unidad central de procesamiento o Procesador (CPU)")
-    {
-      score_vector[iterator] <- score_vector[iterator] + 1
-    }  
-  }
-  
-  iterator = iterator + 1
-}
-
-
-iterator = 1
-for (ans in DF$`Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Disco Duro")
-    {
-      score_vector[iterator] <- score_vector[iterator] + 1
-    }  
-  }
-  
-  iterator = iterator + 1
-}
-
-iterator = 1
-for (ans in DF$`¿Dónde se conecta o instala la memoria (RAM)?`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Placa base (Motherboard)")
-    {
-      score_vector[iterator] <- score_vector[iterator] + 1
-    }  
-  }
-  
-  iterator = iterator + 1
-}
-
-iterator = 1
-for (ans in DF$`¿Dónde se coloca la pasta térmica?`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Unidad central de procesamiento o Procesador (CPU)")
-    {
-      score_vector[iterator] <- score_vector[iterator] + 1
-    }  
-  }
-  
-  iterator = iterator + 1
-}
-
-iterator = 1
-for (ans in DF$`¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?`)
-{
-  if (!is.na(ans))
-  {
-    if (ans == "Placa base (Motherboard)")
-    {
-      score_vector[iterator] <- score_vector[iterator] + 1
-    }  
-  }
-  
-  iterator = iterator + 1
-}
-
-
-
-DF_scored <- cbind(DF, score_vector)
-
-
-```
-
-Ahora veamos la data.
-```{r}
-class_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
-
-
-
-game_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Jugar PC Simulator',]
-
-game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_learning))
-
-nrow(game_learning_cortado)
-
-data <- data.frame(class_learning$score_vector, game_learning_cortado$score_vector)
-boxplot(data,names = c("PDF", "Juego"), col=c("Red", "Blue"))
-```
-
-Como podemos ver ahora hay una ligera inclinación a aquellos que tuvieron la experiencia tradicional de leer el pdf en la clase. Esto se puede deber a un sin fin de cosas, desde que aquellos seleccionados para jugar el "PC Building Simulator" y llenaron el form eran personas con menos tiempo hasta que decidieron llenarlo simplemente de forma no honesta. Cabe decir de que la selección de grupos no fue de forma aleatoria si no por conveniencia del entrevistador.
-
-
-Por ultimo veamos las opiniones de los encuestados sobre su metodo favorito
-```{r}
-class_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
-
-
-
-game_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Jugar PC Simulator',]
-
-game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_learning))
-
-
-data <- data.frame(class_learning$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`, game_learning_cortado$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`)
-boxplot(data,names = c("PDF", "Juego"))
-
-mean(class_learning$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`)
-mean(game_learning_cortado$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`)
-```
-
-Podemos observar de que hay una diferencia inmensa en la opinión de los encuestados entre la clase tradicional y los que aprenden utilizando un videojuego. habiendo una gran preferencia a los videojuegos.
-
-
-En conclusión por la escala del proyecto no podemos realmente asegurar alguna fuerte inclinación ni para la gamificación ni para la educación tradicional. Aunque nuestro estudio sugiere de que la educación tradicional parece ser mejor la diferencia es mínima y no es convulsiva. Tambien el estudio sugiere de que hay una buena preferencia por la Gamificación por parte de los estudiantes. Se necesitan mas estudios de una mayor amplitud para tener una conclusión definitiva.
-
-```{r}
-DF_scored$`Qué experiencia realizaste:` <- ifelse(DF_scored$`Qué experiencia realizaste:` == "Leer Documento PDF", "Leer", "Jugar")
-
-.MinaSeg <- function(x){
-strs <- strsplit(x, ":")[[1]]
-s <- sum(as.numeric(strs)*c(60, 1))
-return(s)
-}
-
-MinaSeg <- Vectorize(.MinaSeg)
-
-boxplot(MinaSeg(DF_scored$`Duración de la experiencia`) ~ DF_scored$`Qué experiencia realizaste:`:DF_scored$score_vector, varwidth = TRUE, las = 3, cex.axis = 0.6, xlab = "Actividad : Nota", ylab = "tiempo (s)")
-
-```
-
-```{r}
-boxplot(DF_scored$score_vector ~ DF_scored$`¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?`:DF_scored$`Qué experiencia realizaste:`, las = 3, cex.axis = 0.6, ylab = "Nota", xlab = "Conocimiento : Actividad", varwidth = TRUE)
-```
-
-
-Dado que el quiz tiene 8 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el minimo de nota aprovatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprovatoria en la universidad no consideramos a los que tengan 4 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio
-```{r}
-passed <- c(DF_scored$score_vector > 4)
-avg <- sum(passed == TRUE)/length(passed)
-avg
-```
-pasaron el quiz por lo que consideramos una buena forma de medir el exito de cualquiera de los dos modos de estudio. 
-
-Ahora podemos ver un grafico del modelo binomial del numero de estudiantes que se espera que pasaron el curso
-```{r}
-plot(dbinom(1:30,30,avg))
-```
-
-Con una esperanza de:
-
-```{r}
-Esperanza <- length(passed)*avg
-Esperanza
-```
-Ahora los modelos de las personas que pasaron el test pero separando los que aprendieron con el pdf de los que aprendieron con el juego.
-
-```{r}
-passed_class <- c(class_learning$score_vector > 3)
-avg_class <- sum(passed_class == TRUE)/length(passed_class)
-
-passed_game <- c(game_learning$score_vector > 3)
-avg_game <- sum(passed_game == TRUE)/length(passed_class)
-
-plot1 <- dbinom(1:30,30,avg_class)
-plot2 <- dbinom(1:30,30,avg_game)
-
-c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
-c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
-
-
-plot(plot1, col = c1);par(new=TRUE)
-plot(plot2, col = c2)
-
-```
-
-
-viendolo como modelo de poisson
-```{r}
-passed_class <- c(class_learning$score_vector > 4)
-avg_class <- sum(passed_class == TRUE)/length(passed_class)
-
-passed_game <- c(game_learning$score_vector > 4)
-avg_game <- sum(passed_game == TRUE)/length(passed_class)
-
-plot1 <- dpois(1:30,30,avg_class)
-plot2 <- dpois(1:30,30,avg_game)
-
-c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
-c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
-
-
-plot(plot1, col = c1);par(new=TRUE)
-plot(plot2, col = c2)
-
-```
-
-
-```{r}
-plot(dbinom(0:7,7,0.25))
-```
