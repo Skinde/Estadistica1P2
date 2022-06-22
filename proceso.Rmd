@@ -637,4 +637,49 @@ Con una esperanza de:
 Esperanza <- length(passed)*avg
 Esperanza
 ```
+Ahora los modelos de las personas que pasaron el test pero separando los que aprendieron con el pdf de los que aprendieron con el juego.
 
+```{r}
+passed_class <- c(class_learning$score_vector > 3)
+avg_class <- sum(passed_class == TRUE)/length(passed_class)
+
+passed_game <- c(game_learning$score_vector > 3)
+avg_game <- sum(passed_game == TRUE)/length(passed_class)
+
+plot1 <- dbinom(1:30,30,avg_class)
+plot2 <- dbinom(1:30,30,avg_game)
+
+c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
+
+
+plot(plot1, col = c1);par(new=TRUE)
+plot(plot2, col = c2)
+
+```
+
+
+viendolo como modelo de poisson
+```{r}
+passed_class <- c(class_learning$score_vector > 4)
+avg_class <- sum(passed_class == TRUE)/length(passed_class)
+
+passed_game <- c(game_learning$score_vector > 4)
+avg_game <- sum(passed_game == TRUE)/length(passed_class)
+
+plot1 <- dpois(1:30,30,avg_class)
+plot2 <- dpois(1:30,30,avg_game)
+
+c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
+
+
+plot(plot1, col = c1);par(new=TRUE)
+plot(plot2, col = c2)
+
+```
+
+
+```{r}
+plot(dbinom(0:7,7,0.25))
+```
