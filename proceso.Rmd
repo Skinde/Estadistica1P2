@@ -363,7 +363,7 @@ Con 31 participantes por grupo (62 total) no hemos notado una diferencia signifi
 
 
 
-INICIO GANT
+## INICIO GANT
 
 
 ```{r}
@@ -383,17 +383,24 @@ ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)
 
 
 ```
+
+## FILTRADO DE NA's
+
 Ahora filtraremos todos los NA y los consideramos como resultados ivalidos not que esto se puede considerar **Manipulación de datos**. Pero, el lector informado puede ver los resultados anteriores y ver las diferencia que trae.
+
 
 
 ```{r}
 DF <- DF[complete.cases(DF),]
 ```
+
+
 Medir puntaje 
+
+
 ```{r}
 score_vector = c()
-
-for (ans in DF$`Regula y proporciona la potencia para que se activen todos los componentes de la PC:`)
+for (ans in DF$p1)
 {
   if (!is.na(ans))
   {
@@ -412,9 +419,8 @@ for (ans in DF$`Regula y proporciona la potencia para que se activen todos los c
   }
   
 }
-
 iterator = 1
-for (ans in DF$`Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:`)
+for (ans in DF$p2)
 {
   if (!is.na(ans))
   {
@@ -426,10 +432,8 @@ for (ans in DF$`Cuenta con sus propios procesadores y memoria interna que proces
   
   iterator = iterator + 1
 }
-
-
 iterator = 1
-for (ans in DF$`Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:`)
+for (ans in DF$p6)
 {
   if (!is.na(ans))
   {
@@ -441,10 +445,8 @@ for (ans in DF$`Responsable realiza cálculos basados en la interpretación de l
   
   iterator = iterator + 1
 }
-
-
 iterator = 1
-for (ans in DF$`Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.`)
+for (ans in DF$p8)
 {
   if (!is.na(ans))
   {
@@ -456,9 +458,8 @@ for (ans in DF$`Almacena todos los datos del sistema operativo, los programas y 
   
   iterator = iterator + 1
 }
-
 iterator = 1
-for (ans in DF$`¿Dónde se conecta o instala la memoria (RAM)?`)
+for (ans in DF$p3)
 {
   if (!is.na(ans))
   {
@@ -470,9 +471,8 @@ for (ans in DF$`¿Dónde se conecta o instala la memoria (RAM)?`)
   
   iterator = iterator + 1
 }
-
 iterator = 1
-for (ans in DF$`¿Dónde se coloca la pasta térmica?`)
+for (ans in DF$p5)
 {
   if (!is.na(ans))
   {
@@ -484,9 +484,8 @@ for (ans in DF$`¿Dónde se coloca la pasta térmica?`)
   
   iterator = iterator + 1
 }
-
 iterator = 1
-for (ans in DF$`¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?`)
+for (ans in DF$p7)
 {
   if (!is.na(ans))
   {
@@ -498,26 +497,15 @@ for (ans in DF$`¿A que parte se conecta el panel frontal de la caja (botón de 
   
   iterator = iterator + 1
 }
-
-
-
 DF_scored <- cbind(DF, score_vector)
-
-
 ```
 
 Ahora veamos la data.
 ```{r}
-class_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
-
-
-
-game_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Jugar PC Simulator',]
-
+class_learning <- DF_scored[DF_scored$tipo_experiencia == 'Leer Documento PDF',]
+game_learning <- DF_scored[DF_scored$tipo_experiencia == 'Jugar PC Simulator',]
 game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_learning))
-
-nrow(game_learning_cortado)
-
+#nrow(game_learning_cortado)
 data <- data.frame(class_learning$score_vector, game_learning_cortado$score_vector)
 boxplot(data,names = c("PDF", "Juego"), col=c("Red", "Blue"))
 ```
@@ -527,32 +515,37 @@ Como podemos ver ahora hay una ligera inclinación a aquellos que tuvieron la ex
 
 Por ultimo veamos las opiniones de los encuestados sobre su metodo favorito
 ```{r}
-class_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
-
-
-
-game_learning <- DF_scored[DF_scored$`Qué experiencia realizaste:` == 'Jugar PC Simulator',]
-
+class_learning <- DF_scored[DF_scored$tipo_experiencia == 'Leer Documento PDF',]
+game_learning <- DF_scored[DF_scored$tipo_experiencia == 'Jugar PC Simulator',]
 game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_learning))
 
+#nrow(class_learning)
+#game_learning
+#nrow(game_learning_cortado)
+data <- data.frame(class_learning$satisfaccion, game_learning_cortado$satisfaccion)
 
-data <- data.frame(class_learning$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`, game_learning_cortado$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`)
+
 boxplot(data,names = c("PDF", "Juego"))
-
-mean(class_learning$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`)
-mean(game_learning_cortado$`Nivel de satisfacción al realizar el juego o leer el documento pdf:`)
+#mean(class_learning$satisfaccion)
+#mean(game_learning_cortado$satisfaccion)
 ```
 
 Podemos observar de que hay una diferencia inmensa en la opinión de los encuestados entre la clase tradicional y los que aprenden utilizando un videojuego. habiendo una gran preferencia a los videojuegos.
 
+
+En conclusión por la escala del proyecto no podemos realmente asegurar alguna fuerte inclinación ni para la gamificación ni para la educación tradicional. Aunque nuestro estudio sugiere de que la educación tradicional parece ser mejor la diferencia es mínima y no es convulsiva. Tambien el estudio sugiere de que hay una buena preferencia por la Gamificación por parte de los estudiantes. Se necesitan mas estudios de una mayor amplitud para tener una conclusión definitiva.
+
+
+
 ## ANALISIS PROBABILISTICO
 
-Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 4 de estas
+Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el minimo de nota aprovatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprovatoria en la universidad no consideramos a los que tengan 3 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio
 ```{r}
 passed <- c(DF_scored$score_vector > 3)
 avg <- sum(passed == TRUE)/length(passed)
 avg
 ```
+pasaron el quiz por lo que consideramos una buena forma de medir el exito de cualquiera de los dos modos de estudio. 
 
 Ahora podemos ver un grafico del modelo binomial del numero de estudiantes que se espera que pasaron el curso
 ```{r}
@@ -571,20 +564,14 @@ Ahora los modelos de las personas que pasaron el test pero separando los que apr
 ```{r}
 passed_class <- c(class_learning$score_vector > 3)
 avg_class <- sum(passed_class == TRUE)/length(passed_class)
-
 passed_game <- c(game_learning$score_vector > 3)
 avg_game <- sum(passed_game == TRUE)/length(passed_class)
-
 plot1 <- dbinom(1:30,30,avg_class)
 plot2 <- dbinom(1:30,30,avg_game)
-
 c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
 c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
-
-
 plot(plot1, col = c1);par(new=TRUE)
 plot(plot2, col = c2)
-
 ```
 
 
@@ -598,13 +585,11 @@ avg_game
 plot(dpois(0:7,7,avg_class), col=c1);par(new=TRUE)
 plot(dpois(0:7,7,avg_game), col=c2)
 plot(dpois(0:7,7,1.75))
-
 ```
 
 ##Conclusión
 
 En conclusión por la escala del proyecto no podemos realmente asegurar alguna fuerte inclinación ni para la gamificación ni para la educación tradicional. Aunque nuestro estudio sugiere de que la educación tradicional parece ser mejor la diferencia es mínima y no es convulsiva. Tambien el estudio sugiere de que hay una buena preferencia por la Gamificación por parte de los estudiantes. Se necesitan mas estudios de una mayor amplitud para tener una conclusión definitiva.
-
 
 
 
