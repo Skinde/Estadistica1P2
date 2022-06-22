@@ -5,9 +5,12 @@ output:
     df_print: paged
 ---
 
+# Introducción
+Existen diferentes técnicas de aprendizaje, las que a lo largo del tiempo han evolucionado siempre con el fin de obtener mejores resultados. La diversificación de métodos de enseñanza ha sido parte de este proceso. Para Lozada y Betancour (2016), la necesidad constante de actualizar los distintos métodos de enseñanza, para la mejora de la calidad educativa, es dependiente de los contenidos que se imparten, las necesidades de la sociedad y la cobertura. Es por eso que los enfoques educativos en los que los profesores son vistos como el eje del proceso educativo resulta mecánico y poco productivo, ya que no demanda suficiente interacción por parte del alumno. 
+Los nuevos enfoques educativos deben proporcionar herramientas que impliquen mayor interacción con los alumnos y que seguidamente cumpla con los objetivos de formación que se relacionan con la preparación profesional y desarrollo de competencias que permitan una óptima integración del conocimiento. Es en este punto donde aparece la *Gamificación*. La *Gamificación* es un método de aprendizaje que usa elementos de juego como complemento de los procesos educativos. Esta técnica resulta muy útil tanto en educación básica como educación superior. El carácter lúdico e interactivo que presenta facilita la interiorización de conocimiento a los estudiantes. El objetivo de la *Gamificación* no es crear un juego por crear, sino analogar de alguna manera el sistema puntuación-recompensa-objetivo que funciona en los juegos.  
+Es por ello que en este estudio intentamos encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
 
-En este estudio intentamos cambio encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
-
+## Carga de datos y librerías
 Primero la carga de data y la instalación de los paquetes.
 
 
@@ -19,16 +22,16 @@ DF_M <- read_csv("data.csv")
 ```{r}
 DF_M$`Duración de la experiencia`
 ```
+## Limpieza de datos
 
-
-La cantidad de observaciones que no han sido completadas al 100%  son : 
+- La cantidad de observaciones que no han sido completadas al 100%  son : 
 
 ```{r}
 Incompletos <-DF_M[!complete.cases(DF_M),]
 count(Incompletos)
 ```
 
-Ahora removemos las columnas que no aportan mucho a el resultado de nuestro experimento: 
+- Ahora removemos las columnas que no aportan mucho a el resultado de nuestro experimento: 
 
 ```{r}
 DF_M$`Submission Date` <- NULL ## La fecha en la que se entrego el test
@@ -36,7 +39,7 @@ DF_M$`Nivel de satisfacción al realizar el juego o leer el documento pdf:` <- N
 head(DF_M)
 ```
 
-Tratamos de limpiar la columna del tiempo total de la experiencia
+- Tratamos de limpiar la columna del tiempo total de la experiencia
 
 ```{r}
 DF_M$`Duración de la experiencia` <- gsub("\\.", ":", DF_M$`Duración de la experiencia`)
@@ -47,8 +50,7 @@ DF_M$`Duración de la experiencia` <- gsub("min", "", DF_M$`Duración de la expe
 DF_M$`Duración de la experiencia` <- gsub("pm", "", DF_M$`Duración de la experiencia`)
 
 ```
-
-Para el filtrado hemos decidido requerir de datos solo a "Qué experiencia realizaste", esto es debido a que no es posible realizar el estudio si no se tiene a cual de los dos grupos pertenece.
+- Para el filtrado hemos decidido requerir de datos solo a "Qué experiencia realizaste", esto es debido a que no es posible realizar el estudio si no se tiene a cual de los dos grupos pertenece.
 
 ```{r}
 
@@ -57,7 +59,7 @@ DF_M %>% filter(!is.na(DF_M$`Qué experiencia realizaste:`))
 
 ```
 
-LOGICA PARA TRATAR DE MANTENERlo TODO IGUAL
+LOGICA PARA TRATAR DE MANTENERLO TODO IGUAL
 
 ```{r}
 
@@ -76,10 +78,7 @@ DF_M$`Duración de la experiencia`
 
 ```
 
-
-
-
-Luego hemos calculado las respuestas correctas "a mano", hemos considerado que los NA como respuestas validas pero con valor de 0.
+- Luego hemos calculado las respuestas correctas "a mano", hemos considerado que los NA como respuestas validas pero con valor de 0.
 ```{r}
 score_vector = c()
 
@@ -209,9 +208,7 @@ DF_M <- cbind(DF_M, score_vector)
 
 
 ```
-
-
-SE BORRAN LAS VARIABLES DE PREGUNTAS
+## SE BORRAN LAS VARIABLES DE PREGUNTAS
 
 ```{r}
 DF_M$`Regula y proporciona la potencia para que se activen todos los componentes de la PC:` <- NULL
@@ -225,7 +222,7 @@ DF_M$`¿A que parte se conecta el panel frontal de la caja (botón de encendido/
 head(DF_M)
 ```
 
-CONVIERTO A FACTOR LA VARIABLE "FRECUENCIA VIDEOJUeGOs"
+## CONVIERTO A FACTOR LA VARIABLE "FRECUENCIA VIDEOJUEGOS"
 ```{r}
 DF_M$`¿Con qué frecuencia juegas videojuegos?` <- factor(DF_M$`¿Con qué frecuencia juegas videojuegos?`, levels = c("No juego videojuegos","1 vez por semana","3 veces por semana","5 veces por semana","Todos los días"), ordered = TRUE)
 
@@ -234,7 +231,7 @@ DF_M$`¿Con qué frecuencia juegas videojuegos?`
 ```{r}
 DF_Scored <- DF_M
 ```
-Luego de medir el puntaje hemos dividido las respuestas en los dos grupos correspondientes. Por ultimo hemos hecho una resta de filas debido a que hubo un imbalance de experimentos. Notar que aunque se quitaron filas y se puede considerar **MANIPULACIÓN DE DATOS* dichas columnas fueron removidas sin ningún tipo de "filtro" en particular mas que el orden en el que llegaron. Por lo que, se puede considerar "Aleatorio" las filas que se quitaron. 
+- Luego de medir el puntaje hemos dividido las respuestas en los dos grupos correspondientes. Por ultimo hemos hecho una resta de filas debido a que hubo un imbalance de experimentos. Notar que aunque se quitaron filas y se puede considerar **MANIPULACIÓN DE DATOS* dichas columnas fueron removidas sin ningún tipo de "filtro" en particular mas que el orden en el que llegaron. Por lo que, se puede considerar "Aleatorio" las filas que se quitaron. 
 ```{r}
 class_learning <- DF_Scored[DF_Scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
 
@@ -250,13 +247,10 @@ data <- data.frame(class_learning$score_vector, game_learning_cortado$score_vect
 boxplot(data,names = c("PDF", "Juego"))
 ```
 
-Con 31 participantes por grupo (62 total) no hemos notado una diferencia significante entre el grupo que paso la experiencia de gamificación y el que no. Como idea intentemos ahora tomar todos los NA como datos no validos
+- Con 31 participantes por grupo (62 total) no hemos notado una diferencia significante entre el grupo que paso la experiencia de gamificación y el que no. Como idea intentemos ahora tomar todos los NA como datos no validos
 
 
-
-
-
-ESTE CODIGO ARREGLA EL PROBLEMA DE "LEER DOCUMENTO" Y "LEER dOCUMENTO PDF"
+ESTE CODIGO ARREGLA EL PROBLEMA DE "LEER DOCUMENTO" Y "LEER DOCUMENTO PDF"
 ```{r}
 iterator = 1
 for (palabras in DF_M$`Qué experiencia realizaste:`){
