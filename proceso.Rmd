@@ -545,9 +545,6 @@ mean(game_learning_cortado$`Nivel de satisfacción al realizar el juego o leer e
 
 Podemos observar de que hay una diferencia inmensa en la opinión de los encuestados entre la clase tradicional y los que aprenden utilizando un videojuego. habiendo una gran preferencia a los videojuegos.
 
-
-En conclusión por la escala del proyecto no podemos realmente asegurar alguna fuerte inclinación ni para la gamificación ni para la educación tradicional. Aunque nuestro estudio sugiere de que la educación tradicional parece ser mejor la diferencia es mínima y no es convulsiva. Tambien el estudio sugiere de que hay una buena preferencia por la Gamificación por parte de los estudiantes. Se necesitan mas estudios de una mayor amplitud para tener una conclusión definitiva.
-
 ## ANALISIS PROBABILISTICO
 
 Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 4 de estas
@@ -603,6 +600,10 @@ plot(dpois(0:7,7,avg_game), col=c2)
 plot(dpois(0:7,7,1.75))
 
 ```
+
+##Conclusión
+
+En conclusión por la escala del proyecto no podemos realmente asegurar alguna fuerte inclinación ni para la gamificación ni para la educación tradicional. Aunque nuestro estudio sugiere de que la educación tradicional parece ser mejor la diferencia es mínima y no es convulsiva. Tambien el estudio sugiere de que hay una buena preferencia por la Gamificación por parte de los estudiantes. Se necesitan mas estudios de una mayor amplitud para tener una conclusión definitiva.
 
 
 
