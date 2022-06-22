@@ -384,7 +384,62 @@ ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)
 
 ```
 
+## ANALISIS PROBABILISTICO
 
+Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el minimo de nota aprovatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprovatoria en la universidad no consideramos a los que tengan 3 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio
+```{r}
+passed <- c(DF_scored$score_vector > 3)
+avg <- sum(passed == TRUE)/length(passed)
+avg
+```
+pasaron el quiz por lo que consideramos una buena forma de medir el exito de cualquiera de los dos modos de estudio. 
+
+Ahora podemos ver un grafico del modelo binomial del numero de estudiantes que se espera que pasaron el curso
+```{r}
+plot(dbinom(1:30,30,avg))
+```
+
+Con una esperanza de:
+
+```{r}
+Esperanza <- length(passed)*avg
+Esperanza
+```
+
+Ahora los modelos de las personas que pasaron el test pero separando los que aprendieron con el pdf de los que aprendieron con el juego.
+
+```{r}
+passed_class <- c(class_learning$score_vector > 3)
+avg_class <- sum(passed_class == TRUE)/length(passed_class)
+
+passed_game <- c(game_learning$score_vector > 3)
+avg_game <- sum(passed_game == TRUE)/length(passed_class)
+
+plot1 <- dbinom(1:30,30,avg_class)
+plot2 <- dbinom(1:30,30,avg_game)
+
+c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
+c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
+
+
+plot(plot1, col = c1);par(new=TRUE)
+plot(plot2, col = c2)
+
+```
+
+
+Ahora un modelo de poisson de las notas
+
+```{r}
+avg_class <- sum(class_learning$score_vector)/length(passed_class)
+avg_class
+avg_game <- sum(game_learning$score_vector)/length(passed_class)
+avg_game
+plot(dpois(0:7,7,avg_class), col=c1);par(new=TRUE)
+plot(dpois(0:7,7,avg_game), col=c2)
+plot(dpois(0:7,7,1.75))
+
+```
 
 
 
