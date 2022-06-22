@@ -386,13 +386,12 @@ ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)
 
 ## ANALISIS PROBABILISTICO
 
-Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el minimo de nota aprovatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprovatoria en la universidad no consideramos a los que tengan 3 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio
+Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 4 de estas
 ```{r}
 passed <- c(DF_scored$score_vector > 3)
 avg <- sum(passed == TRUE)/length(passed)
 avg
 ```
-pasaron el quiz por lo que consideramos una buena forma de medir el exito de cualquiera de los dos modos de estudio. 
 
 Ahora podemos ver un grafico del modelo binomial del numero de estudiantes que se espera que pasaron el curso
 ```{r}
