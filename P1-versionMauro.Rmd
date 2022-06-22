@@ -6,7 +6,7 @@ output:
 ---
 
 
-En este estudio intentamos encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
+En este estudio intentamos cambio encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
 
 Primero la carga de data y la instalación de los paquetes.
 
