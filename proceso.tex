@@ -1,0 +1,1159 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Estudio sobre la Gamificación en UTEC como alternativa a la educación tradicional},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Estudio sobre la Gamificación en UTEC como alternativa a la
+educación tradicional}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+En este estudio intentamos encontrar si existe una mejora de la calidad
+educativa utilizando la \emph{Gamificación} para los estudiantes en
+UTEC. Para esto, diseñamos un experimento en el que dos grupos
+(seleccionados por los entrevistadores), uno que utiliza la experiencia
+tradicional de educación y el otro el cual recibe una educación con un
+videojuego llamado ``Pc building simulator''. Ambos experimentos se
+diseñaron para durar aproximadamente 15 minutos y se diseñaron para
+cubrir el mismo material.
+
+Primero la carga de data y la instalación de los paquetes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+
+\NormalTok{DF }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 85 Columns: 22
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (17): Submission Date, Ingrese su correo de UTEC!!, Nombre, Apellido, ¿C...
+## dbl  (5): ¿Cual es tu edad?, ¿En que ciclo te encuentras?, ¿Cuál es tu nivel...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+LIMPIEZA DE TIEMPO!!!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{":"}\NormalTok{, DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{" "}\NormalTok{, }\StringTok{""}\NormalTok{, DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"minutos"}\NormalTok{, }\StringTok{""}\NormalTok{, DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"min"}\NormalTok{, }\StringTok{""}\NormalTok{, DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"pm"}\NormalTok{, }\StringTok{""}\NormalTok{, DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (palabras }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(palabras))\{  }
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{nchar}\NormalTok{(palabras)}\SpecialCharTok{\textless{}}\DecValTok{3}\NormalTok{)\{}
+\NormalTok{            DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{[iterator] }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{[iterator],}\StringTok{":00"}\NormalTok{)}
+            \CommentTok{\#print(iterator)}
+\NormalTok{      \}}
+\NormalTok{    \}}
+          
+\NormalTok{    iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "15:35" "28:25" "16:25" "17:15" "20:00" "16:36" "23:21" "17:20" "16:40"
+## [10] "6:40"  "19:25" "15:25" "17:30" "8:00"  "29:49" "15:50" "15:35" "17:35"
+## [19] "13:20" "18:30" "15:10" "16:08" "16:20" "18:35" "17:15" "14:42" "25:40"
+## [28] "18:10" "24:00" "18:30" "13:47" "18:15" "18:35" "15:08" "16:58" "7:33" 
+## [37] "14:25" "17:38" "14:50" "12:05" "15:38" "18:52" "18:52" "25:32" "18:54"
+## [46] "20:10" "17:00" "16:00" "20:10" "15:10" "17:00" "15:13" "20:00" "16:41"
+## [55] "24:40" "11:10" "14:50" "15:00" "15:00" "17:00" "13:20" "17:20" "19:20"
+## [64] "18:15" "17:30" "12:10" "9:30"  "18:30" "27:05" "12:30" "14:33" NA     
+## [73] "17:20" "16:00" "15:20" "17:32" "26:20" "16:05" "21:25" "2:00"  NA     
+## [82] NA      NA      NA      NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF }\OtherTok{\textless{}{-}}\NormalTok{ DF[}\FunctionTok{complete.cases}\NormalTok{(DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{),]}
+\NormalTok{Duracion }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (duracion }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{    minuto }\OtherTok{\textless{}{-}} \FunctionTok{str\_extract}\NormalTok{(duracion, }\StringTok{"[0{-}9]*"}\NormalTok{)}
+\NormalTok{    Duracion }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(Duracion, }\FunctionTok{strtoi}\NormalTok{(minuto))}
+\NormalTok{\}}
+
+\NormalTok{Duracion}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 15 28 16 17 20 16 23 17 16  6 19 15 17  8 29 15 15 17 13 18 15 16 16 18 17
+## [26] 14 25 18 24 18 13 18 18 15 16  7 14 17 14 12 15 18 18 25 18 20 17 16 20 15
+## [51] 17 15 20 16 24 11 14 15 15 17 13 17 19 18 17 12  9 18 27 12 14 17 16 15 17
+## [76] 26 16 21  2
+\end{verbatim}
+
+ESTE CODIGO ARREGLA EL PROBLEMA DE ``LEER DOCUMENTO'' Y ``LEER DOCUMENTO
+PDF''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (palabras }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(palabras))\{  }
+    \ControlFlowTok{if}\NormalTok{(palabras}\SpecialCharTok{==}\StringTok{"Leer Documento"}\NormalTok{)\{}
+\NormalTok{            DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}\NormalTok{[iterator] }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}\NormalTok{[iterator],}\StringTok{" PDF"}\NormalTok{)}
+            \CommentTok{\#print(iterator)}
+\NormalTok{      \}}
+\NormalTok{    \}}
+          
+\NormalTok{    iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+\NormalTok{DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Leer Documento PDF" "Leer Documento PDF" "Leer Documento PDF"
+##  [4] "Leer Documento PDF" "Leer Documento PDF" "Leer Documento PDF"
+##  [7] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [10] "Jugar PC Simulator" "Leer Documento PDF" "Leer Documento PDF"
+## [13] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [16] "Leer Documento PDF" "Jugar PC Simulator" "Jugar PC Simulator"
+## [19] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [22] "Leer Documento PDF" "Jugar PC Simulator" "Leer Documento PDF"
+## [25] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [28] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [31] "Jugar PC Simulator" "Jugar PC Simulator" "Leer Documento PDF"
+## [34] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [37] "Leer Documento PDF" "Jugar PC Simulator" "Jugar PC Simulator"
+## [40] "Leer Documento PDF" "Jugar PC Simulator" "Jugar PC Simulator"
+## [43] "Leer Documento PDF" "Jugar PC Simulator" "Jugar PC Simulator"
+## [46] "Jugar PC Simulator" "Leer Documento PDF" "Leer Documento PDF"
+## [49] "Leer Documento PDF" "Jugar PC Simulator" "Jugar PC Simulator"
+## [52] "Jugar PC Simulator" "Leer Documento PDF" "Jugar PC Simulator"
+## [55] "Jugar PC Simulator" "Leer Documento PDF" "Leer Documento PDF"
+## [58] "Leer Documento PDF" "Leer Documento PDF" "Leer Documento PDF"
+## [61] "Jugar PC Simulator" "Jugar PC Simulator" "Leer Documento PDF"
+## [64] "Leer Documento PDF" "Leer Documento PDF" "Leer Documento PDF"
+## [67] "Leer Documento PDF" "Leer Documento PDF" "Jugar PC Simulator"
+## [70] "Leer Documento PDF" "Leer Documento PDF" "Leer Documento PDF"
+## [73] "Leer Documento PDF" "Leer Documento PDF" "Jugar PC Simulator"
+## [76] "Jugar PC Simulator" "Jugar PC Simulator" "Jugar PC Simulator"
+## [79] "Leer Documento PDF"
+\end{verbatim}
+
+Para el filtrado hemos decidido requerir de datos solo a ``Qué
+experiencia realizaste'', esto es debido a que no es posible realizar el
+estudio si no se tiene a cual de los dos grupos pertenece.
+
+Luego hemos calculado las respuestas correctas ``a mano'', hemos
+considerado que los NA como respuestas validas pero con valor de 0.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_vector }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Regula y proporciona la potencia para que se activen todos los componentes de la PC:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Fuente de alimentación (PSU) o sistema de alimentación"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(score\_vector, }\DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}
+    \ControlFlowTok{else}
+\NormalTok{    \{}
+\NormalTok{      score\_vector }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(score\_vector, }\DecValTok{0}\NormalTok{)}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  \ControlFlowTok{else}
+\NormalTok{  \{}
+\NormalTok{    score\_vector }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(score\_vector, }\DecValTok{0}\NormalTok{)}
+\NormalTok{  \}}
+  
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Tarjeta gráfica (GPU)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{=}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Unidad central de procesamiento o Procesador (CPU)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Disco Duro"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿Dónde se conecta o instala la memoria (RAM)?}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Placa base (Motherboard)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿Dónde se coloca la pasta térmica?}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Unidad central de procesamiento o Procesador (CPU)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Placa base (Motherboard)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+
+
+\NormalTok{DF\_scored }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(DF, score\_vector)}
+\end{Highlighting}
+\end{Shaded}
+
+Luego de medir el puntaje hemos dividido las respuestas en los dos
+grupos correspondientes. Por ultimo hemos hecho una resta de filas
+debido a que hubo un imbalance de experimentos. Notar que aunque se
+quitaron filas y se puede considerar \emph{MANIPULACIÓN DE DATOS} dichas
+columnas fueron removidas sin ningún tipo de ``filtro'' en particular
+mas que el orden en el que llegaron. Por lo que, se puede considerar
+``Aleatorio'' las filas que se quitaron.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{class\_learning }\OtherTok{\textless{}{-}}\NormalTok{ DF\_scored[DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{\textquotesingle{}Leer Documento PDF\textquotesingle{}}\NormalTok{,]}
+
+
+
+\NormalTok{game\_learning }\OtherTok{\textless{}{-}}\NormalTok{ DF\_scored[DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{\textquotesingle{}Jugar PC Simulator\textquotesingle{}}\NormalTok{,]}
+
+\NormalTok{game\_learning\_cortado }\OtherTok{\textless{}{-}} \FunctionTok{head}\NormalTok{(game\_learning, }\FunctionTok{nrow}\NormalTok{(class\_learning) }\SpecialCharTok{{-}} \FunctionTok{nrow}\NormalTok{(game\_learning))}
+
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(class\_learning}\SpecialCharTok{$}\NormalTok{score\_vector, game\_learning\_cortado}\SpecialCharTok{$}\NormalTok{score\_vector)}
+\FunctionTok{boxplot}\NormalTok{(data,}\AttributeTok{names =} \FunctionTok{c}\NormalTok{(}\StringTok{"PDF"}\NormalTok{, }\StringTok{"Juego"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+Tambien podemos medir la nota contra la experiencia de cada alumno
+
+Grafica para los que hirieron clase de su nivel de experiencia armando
+pc contra su puntaje
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{number\_to\_divide }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (row }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(class\_learning))}
+\NormalTok{\{}
+\NormalTok{  score\_mean[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\SpecialCharTok{+}\NormalTok{ class\_learning[row, }\StringTok{"score\_vector"}\NormalTok{]}
+\NormalTok{  number\_to\_divide[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ number\_to\_divide[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{ (iterator }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  score\_mean[iterator] }\OtherTok{=}\NormalTok{ score\_mean[iterator]}\SpecialCharTok{/}\NormalTok{number\_to\_divide[iterator]}
+\NormalTok{\}}
+
+
+\NormalTok{possible }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(possible, score\_mean, }\AttributeTok{xlab =} \StringTok{"Nivel De Experiencia"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Promedio de puntaje"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+Grafica para los que hirieron videojuego de su nivel de experiencia
+armando pc contra su puntaje
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[}\FunctionTok{complete.cases}\NormalTok{(score\_mean)]}
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{number\_to\_divide }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (row }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(game\_learning\_cortado))}
+\NormalTok{\{}
+\NormalTok{  score\_mean[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\SpecialCharTok{+}\NormalTok{ game\_learning\_cortado[row, }\StringTok{"score\_vector"}\NormalTok{]}
+\NormalTok{  number\_to\_divide[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ number\_to\_divide[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de experiencia armando computadoras?"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{ (iterator }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  score\_mean[iterator] }\OtherTok{=}\NormalTok{ score\_mean[iterator]}\SpecialCharTok{/}\NormalTok{number\_to\_divide[iterator]}
+\NormalTok{\}}
+
+\NormalTok{possible }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(possible, score\_mean, }\AttributeTok{xlab =} \StringTok{"Nivel De Experiencia"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Promedio de puntaje"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Grafica de los que jugaron clase de su nivel de experiencia con los
+componentes de una computadora vs su puntaje
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[}\FunctionTok{complete.cases}\NormalTok{(score\_mean)]}
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{number\_to\_divide }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (row }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(class\_learning))}
+\NormalTok{\{}
+\NormalTok{  score\_mean[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\SpecialCharTok{+}\NormalTok{ class\_learning[row, }\StringTok{"score\_vector"}\NormalTok{]}
+\NormalTok{  number\_to\_divide[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ number\_to\_divide[class\_learning[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{ (iterator }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  score\_mean[iterator] }\OtherTok{=}\NormalTok{ score\_mean[iterator]}\SpecialCharTok{/}\NormalTok{number\_to\_divide[iterator]}
+\NormalTok{\}}
+
+\NormalTok{possible }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(possible,score\_mean, }\AttributeTok{xlab =} \StringTok{"Nivel De Experiencia (Componentes)"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Promedio de puntaje"}\NormalTok{, }\AttributeTok{yaxp=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{20}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-9-1.pdf}
+Grafica de los que jugaron videojuego y su nivel de experiencia con los
+componentes de una computadora vs su puntaje
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[}\FunctionTok{complete.cases}\NormalTok{(score\_mean)]}
+\NormalTok{score\_mean }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{number\_to\_divide }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (row }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(game\_learning\_cortado))}
+\NormalTok{\{}
+\NormalTok{  score\_mean[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ score\_mean[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\SpecialCharTok{+}\NormalTok{ game\_learning\_cortado[row, }\StringTok{"score\_vector"}\NormalTok{]}
+\NormalTok{  number\_to\_divide[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ number\_to\_divide[game\_learning\_cortado[row, }\StringTok{"¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\ControlFlowTok{for}\NormalTok{ (iterator }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{)}
+\NormalTok{\{}
+\NormalTok{  score\_mean[iterator] }\OtherTok{=}\NormalTok{ score\_mean[iterator]}\SpecialCharTok{/}\NormalTok{number\_to\_divide[iterator]}
+\NormalTok{\}}
+
+\NormalTok{possible }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(possible,score\_mean, }\AttributeTok{xlab =} \StringTok{"Nivel De Experiencia (Componentes)"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Promedio de puntaje"}\NormalTok{, }\AttributeTok{yaxp=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{20}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+Tambien podemos ver el tiempo vs nota
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{seconds }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{as.period}\NormalTok{(}\FunctionTok{ms}\NormalTok{(DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{), }\AttributeTok{unit =} \StringTok{"sec"}\NormalTok{))}
+\NormalTok{DF\_scored }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(DF\_scored, seconds)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(DF\_scored}\SpecialCharTok{$}\NormalTok{seconds, DF\_scored}\SpecialCharTok{$}\NormalTok{score\_vector, }\AttributeTok{pch =} \DecValTok{20}\NormalTok{, }\AttributeTok{col =} \FunctionTok{rgb}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\FloatTok{0.2}\NormalTok{), }\AttributeTok{xlab=}\StringTok{"Tiempo de aprendizaje (Segundos)"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Puntaje"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+No parece haber una influencia del tiempo
+
+Con 31 participantes por grupo (62 total) no hemos notado una diferencia
+significante entre el grupo que paso la experiencia de gamificación y el
+que no. Como idea intentemos ahora tomar todos los NA como datos no
+validos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Leer Documento PDF" "Jugar PC Simulator"
+\end{verbatim}
+
+INICIO GANT
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v tibble  3.1.6     v purrr   0.3.4
+## v tidyr   1.2.0     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x lubridate::as.difftime() masks base::as.difftime()
+## x lubridate::date()        masks base::date()
+## x dplyr::filter()          masks stats::filter()
+## x lubridate::intersect()   masks base::intersect()
+## x dplyr::lag()             masks stats::lag()
+## x lubridate::setdiff()     masks base::setdiff()
+## x lubridate::union()       masks base::union()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lubridate)}
+\NormalTok{gantt }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"gant.csv"}\NormalTok{, }\AttributeTok{h=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gantt}\SpecialCharTok{$}\NormalTok{Inicio }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{"{-}"}\NormalTok{, gantt}\SpecialCharTok{$}\NormalTok{Inicio)}
+\NormalTok{gantt}\SpecialCharTok{$}\NormalTok{Fin }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{."}\NormalTok{, }\StringTok{"{-}"}\NormalTok{, gantt}\SpecialCharTok{$}\NormalTok{Fin)}
+\NormalTok{gantt}\SpecialCharTok{$}\NormalTok{Inicio }\OtherTok{\textless{}{-}} \FunctionTok{ymd}\NormalTok{(gantt}\SpecialCharTok{$}\NormalTok{Inicio)}
+\NormalTok{gantt}\SpecialCharTok{$}\NormalTok{Fin }\OtherTok{\textless{}{-}} \FunctionTok{ymd}\NormalTok{(gantt}\SpecialCharTok{$}\NormalTok{Fin)}
+\NormalTok{gantt.melt }\OtherTok{\textless{}{-}}\NormalTok{ gantt}\SpecialCharTok{\%\textgreater{}\%}
+\NormalTok{  tidyr}\SpecialCharTok{::}\FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{col =} \FunctionTok{c}\NormalTok{(Inicio,Fin))}
+\NormalTok{gantt.melt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 28 x 7
+##     Item Actividad                 Elemento.del.Pr~ Color X     name  value     
+##    <int> <chr>                     <chr>            <chr> <lgl> <chr> <date>    
+##  1     1 Primer contacto con equi~ Entregable P0    red   NA    Inic~ 2022-03-21
+##  2     1 Primer contacto con equi~ Entregable P0    red   NA    Fin   2022-03-29
+##  3     2 Reunion para definir tem~ Entregable P0    red   NA    Inic~ 2022-04-03
+##  4     2 Reunion para definir tem~ Entregable P0    red   NA    Fin   2022-04-06
+##  5     3 Redaccion de informe par~ Entregable P0    red   NA    Inic~ 2022-04-06
+##  6     3 Redaccion de informe par~ Entregable P0    red   NA    Fin   2022-04-08
+##  7     4 Espera de Feeback de ent~ Entregable P0    red   NA    Inic~ 2022-04-09
+##  8     4 Espera de Feeback de ent~ Entregable P0    red   NA    Fin   2022-04-21
+##  9     5 Reunion para coordinar e~ Tema de Investi~ blue  NA    Inic~ 2022-04-28
+## 10     5 Reunion para coordinar e~ Tema de Investi~ blue  NA    Fin   2022-04-30
+## # ... with 18 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{today }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(}\StringTok{\textquotesingle{}2022{-}05{-}06\textquotesingle{}}\NormalTok{)}
+\CommentTok{\#Sys.Date()}
+
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(gantt.melt,}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ value,}\AttributeTok{y =}\NormalTok{ Actividad,}\AttributeTok{colour =} \StringTok{"red"}\NormalTok{))}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{alpha=} \FloatTok{0.5}\NormalTok{, }\AttributeTok{size =} \DecValTok{7}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{geom\_label}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\FunctionTok{format}\NormalTok{(value,}\StringTok{"\%d \%b"}\NormalTok{)),}\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{()}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ today,}\AttributeTok{color =} \StringTok{"grey"}\NormalTok{, }\AttributeTok{size =} \DecValTok{2}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{ )}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Gant chart"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{subtitle =} \StringTok{"XDD"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{caption =} \StringTok{"\#XD"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Date"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+}  \FunctionTok{labs}\NormalTok{ (}\AttributeTok{y =} \StringTok{"Items"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+}  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{,}\StringTok{"blue"}\NormalTok{))}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+}  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{p1 }\OtherTok{\textless{}{-}}\NormalTok{ p1 }\SpecialCharTok{+} \FunctionTok{scale\_x\_date}\NormalTok{(}\AttributeTok{name =} \StringTok{"Dates"}
+\NormalTok{                        , }\AttributeTok{date\_labels =} \StringTok{"\%d \%b"}
+\NormalTok{                        , }\AttributeTok{date\_breaks =} \StringTok{"1 week"}
+\NormalTok{                        , }\AttributeTok{minor\_breaks =} \StringTok{"2 day"}
+\NormalTok{                        , }\AttributeTok{sec.axis =} \FunctionTok{dup\_axis}\NormalTok{(}\AttributeTok{name =} \StringTok{"week number"}\NormalTok{,}\AttributeTok{labels =}\NormalTok{   scales}\SpecialCharTok{::}\FunctionTok{date\_format}\NormalTok{(}\StringTok{"\%W"}\NormalTok{))}
+\NormalTok{                        )}
+  
+\NormalTok{p1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gantt }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"gant.csv"}\NormalTok{, }\AttributeTok{h=}\NormalTok{T)}
+\NormalTok{gantt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Item                                                        Actividad
+## 1     1                            Primer contacto con equipo de trabajo
+## 2     2        Reunion para definir temas de posible estudio estadistico
+## 3     3                       Redaccion de informe para el entregable P0
+## 4     4                               Espera de Feeback de entregable P0
+## 5     5 Reunion para coordinar el tema final para el estudio estadistico
+## 6     6     Postulacion de propuestas de temas por parte de los miembros
+## 7     7        Seleccion de propuestas de tema por parte de los miembros
+## 8     8   Reunion con Profesor Jose Renom para feeback del tema escogido
+## 9     9            Reunion de coordinacion de parametros del experimento
+## 10   10                  Aplicacion del experimentos al publico objetivo
+## 11   11                                          Filtracion de data en R
+## 12   12                                   Desarrollo de Informe en Rnote
+## 13   13               Desarrollo de Presentacion Oral en R Presentations
+## 14   14                       Entrega de Informe y Presentacion a Canvas
+##         Elemento.del.Proyecto     Inicio        Fin  Color  X
+## 1               Entregable P0 2022.03.21 2022.03.29    red NA
+## 2               Entregable P0 2022.04.03 2022.04.06    red NA
+## 3               Entregable P0 2022.04.06 2022.04.08    red NA
+## 4               Entregable P0 2022.04.09 2022.04.21    red NA
+## 5       Tema de Investigacion 2022.04.28 2022.04.30   blue NA
+## 6       Tema de Investigacion 2022.05.02 2022.05.04   blue NA
+## 7       Tema de Investigacion 2022.05.05 2022.05.05   blue NA
+## 8  Parametros del experimento 2022.04.27 2022.04.29  green NA
+## 9  Parametros del experimento 2022.05.01 2022.05.03  green NA
+## 10 Desarrollo del Experimento 2022.05.02 2022.05.05 yellow NA
+## 11              Entregable P1 2022.05.05 2022.05.06 purple NA
+## 12              Entregable P1 2022.05.05 2022.05.06 purple NA
+## 13              Entregable P1 2022.05.05 2022.05.07 purple NA
+## 14              Entregable P1 2022.05.07 2022.05.07 purple NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{acts }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Primer contacto con equipo de trabajo"}\NormalTok{, }\StringTok{"Reunion para definir temas de posible estudio estadistico"}\NormalTok{,}\StringTok{"Redaccion de informe para el entregable P0"}\NormalTok{, }\StringTok{"Espera de Feeback de entregable P0"}\NormalTok{, }\StringTok{"Reunion para coordinar el tema final para el estudio estadistico"}\NormalTok{, }\StringTok{"Postulacion de propuestas de temas por parte de los miembros"}\NormalTok{, }\StringTok{"Seleccion de propuestas de tema por parte de los miembros"}\NormalTok{, }\StringTok{"Reunion con Profesor Jose Renom para feeback del tema escogido"}\NormalTok{, }\StringTok{"Reunion de coordinacion de parametros del experimento"}\NormalTok{, }\StringTok{"Aplicacion del experimentos al publico objetivo"}\NormalTok{, }\StringTok{"Filtracion de data en R"}\NormalTok{, }\StringTok{"Desarrollo de Informe en Rnote"}\NormalTok{, }\StringTok{"Desarrollo de Presentacion Oral en R Presentations"}\NormalTok{, }\StringTok{"Entrega de Informe y Presentacion a Canvas"}\NormalTok{)}
+\NormalTok{els }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Entregable P0"}\NormalTok{, }\StringTok{"Tema de Investigacion"}\NormalTok{, }\StringTok{"Parametros del experimento"}\NormalTok{, }\StringTok{"Desarrollo del Experimento"}\NormalTok{, }\StringTok{"Entregable P1"}\NormalTok{)}
+
+\FunctionTok{length}\NormalTok{(acts)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{g.gantt }\OtherTok{\textless{}{-}} \FunctionTok{gather}\NormalTok{(gantt, }\StringTok{"state"}\NormalTok{, }\StringTok{"date"}\NormalTok{, }\DecValTok{4}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{date =} \FunctionTok{as.Date}\NormalTok{(date, }\StringTok{"\%Y.\%m.\%d"}\NormalTok{), }\AttributeTok{Actividad=}\FunctionTok{factor}\NormalTok{(Actividad, acts[}\FunctionTok{length}\NormalTok{(acts)}\SpecialCharTok{:}\DecValTok{1}\NormalTok{]), }\AttributeTok{Elemento.del.Proyecto =}\FunctionTok{factor}\NormalTok{(Elemento.del.Proyecto, els))}
+\NormalTok{g.gantt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Item                                                        Actividad
+## 1     1                            Primer contacto con equipo de trabajo
+## 2     2        Reunion para definir temas de posible estudio estadistico
+## 3     3                       Redaccion de informe para el entregable P0
+## 4     4                               Espera de Feeback de entregable P0
+## 5     5 Reunion para coordinar el tema final para el estudio estadistico
+## 6     6     Postulacion de propuestas de temas por parte de los miembros
+## 7     7        Seleccion de propuestas de tema por parte de los miembros
+## 8     8   Reunion con Profesor Jose Renom para feeback del tema escogido
+## 9     9            Reunion de coordinacion de parametros del experimento
+## 10   10                  Aplicacion del experimentos al publico objetivo
+## 11   11                                          Filtracion de data en R
+## 12   12                                   Desarrollo de Informe en Rnote
+## 13   13               Desarrollo de Presentacion Oral en R Presentations
+## 14   14                       Entrega de Informe y Presentacion a Canvas
+## 15    1                            Primer contacto con equipo de trabajo
+## 16    2        Reunion para definir temas de posible estudio estadistico
+## 17    3                       Redaccion de informe para el entregable P0
+## 18    4                               Espera de Feeback de entregable P0
+## 19    5 Reunion para coordinar el tema final para el estudio estadistico
+## 20    6     Postulacion de propuestas de temas por parte de los miembros
+## 21    7        Seleccion de propuestas de tema por parte de los miembros
+## 22    8   Reunion con Profesor Jose Renom para feeback del tema escogido
+## 23    9            Reunion de coordinacion de parametros del experimento
+## 24   10                  Aplicacion del experimentos al publico objetivo
+## 25   11                                          Filtracion de data en R
+## 26   12                                   Desarrollo de Informe en Rnote
+## 27   13               Desarrollo de Presentacion Oral en R Presentations
+## 28   14                       Entrega de Informe y Presentacion a Canvas
+##         Elemento.del.Proyecto  Color  X  state       date
+## 1               Entregable P0    red NA Inicio 2022-03-21
+## 2               Entregable P0    red NA Inicio 2022-04-03
+## 3               Entregable P0    red NA Inicio 2022-04-06
+## 4               Entregable P0    red NA Inicio 2022-04-09
+## 5       Tema de Investigacion   blue NA Inicio 2022-04-28
+## 6       Tema de Investigacion   blue NA Inicio 2022-05-02
+## 7       Tema de Investigacion   blue NA Inicio 2022-05-05
+## 8  Parametros del experimento  green NA Inicio 2022-04-27
+## 9  Parametros del experimento  green NA Inicio 2022-05-01
+## 10 Desarrollo del Experimento yellow NA Inicio 2022-05-02
+## 11              Entregable P1 purple NA Inicio 2022-05-05
+## 12              Entregable P1 purple NA Inicio 2022-05-05
+## 13              Entregable P1 purple NA Inicio 2022-05-05
+## 14              Entregable P1 purple NA Inicio 2022-05-07
+## 15              Entregable P0    red NA    Fin 2022-03-29
+## 16              Entregable P0    red NA    Fin 2022-04-06
+## 17              Entregable P0    red NA    Fin 2022-04-08
+## 18              Entregable P0    red NA    Fin 2022-04-21
+## 19      Tema de Investigacion   blue NA    Fin 2022-04-30
+## 20      Tema de Investigacion   blue NA    Fin 2022-05-04
+## 21      Tema de Investigacion   blue NA    Fin 2022-05-05
+## 22 Parametros del experimento  green NA    Fin 2022-04-29
+## 23 Parametros del experimento  green NA    Fin 2022-05-03
+## 24 Desarrollo del Experimento yellow NA    Fin 2022-05-05
+## 25              Entregable P1 purple NA    Fin 2022-05-06
+## 26              Entregable P1 purple NA    Fin 2022-05-06
+## 27              Entregable P1 purple NA    Fin 2022-05-07
+## 28              Entregable P1 purple NA    Fin 2022-05-07
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#demosurv \textless{}{-} data.frame(state=rep(c("Inicio","Fin"), each=52), date=c(seq.Date(as.Date("2022.03.21"), as.Date("2022.05.06"), "3 week"), seq.Date(as.Date("2022.03.21"), as.Date("2022.05.06"), "3 week")), Actividad=rep(c(8.55,9.45), each=52),\textquotesingle{}Elemento del Proyecto\textquotesingle{}="", Item=rep(42:93, 2))}
+\CommentTok{\#head(g.gantt$Actividad)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{actcols }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"\#548235"}\NormalTok{, }\StringTok{"\#2E75B6"}\NormalTok{, }\StringTok{"\#BF9000"}\NormalTok{, }\StringTok{"\#7030A0"}\NormalTok{, }\StringTok{"\#cd6600"}\NormalTok{)}
+\FunctionTok{ggplot}\NormalTok{(g.gantt, }\FunctionTok{aes}\NormalTok{(date, Actividad, }\AttributeTok{colour =}\NormalTok{ Elemento.del.Proyecto, }\AttributeTok{group=}\NormalTok{Item)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{size =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values=}\NormalTok{actcols, }\AttributeTok{name=}\StringTok{"Project component"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Semana Ciclo 2022{-}1"}\NormalTok{, }\AttributeTok{y=}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{title=}\StringTok{"Project timeline"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_date}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq.Date}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(}\StringTok{"2022{-}03{-}21"}\NormalTok{), }\FunctionTok{as.Date}\NormalTok{(}\StringTok{"2022{-}5{-}06"}\NormalTok{), }\StringTok{"weeks"}\NormalTok{), }\AttributeTok{labels=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_gray}\NormalTok{(}\AttributeTok{base\_size=}\DecValTok{14}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"data.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 85 Columns: 22
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (17): Submission Date, Ingrese su correo de UTEC!!, Nombre, Apellido, ¿C...
+## dbl  (5): ¿Cual es tu edad?, ¿En que ciclo te encuentras?, ¿Cuál es tu nivel...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+Filtrando todos los NA
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF }\OtherTok{\textless{}{-}}\NormalTok{ DF[}\FunctionTok{complete.cases}\NormalTok{(DF),]}
+\end{Highlighting}
+\end{Shaded}
+
+Medir puntaje
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score\_vector }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Regula y proporciona la potencia para que se activen todos los componentes de la PC:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Fuente de alimentación (PSU) o sistema de alimentación"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(score\_vector, }\DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}
+    \ControlFlowTok{else}
+\NormalTok{    \{}
+\NormalTok{      score\_vector }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(score\_vector, }\DecValTok{0}\NormalTok{)}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  \ControlFlowTok{else}
+\NormalTok{  \{}
+\NormalTok{    score\_vector }\OtherTok{\textless{}{-}} \FunctionTok{append}\NormalTok{(score\_vector, }\DecValTok{0}\NormalTok{)}
+\NormalTok{  \}}
+  
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Tarjeta gráfica (GPU)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{=}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Unidad central de procesamiento o Procesador (CPU)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Disco Duro"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿Dónde se conecta o instala la memoria (RAM)?}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Placa base (Motherboard)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿Dónde se coloca la pasta térmica?}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Unidad central de procesamiento o Procesador (CPU)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+\NormalTok{iterator }\OtherTok{=} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (ans }\ControlFlowTok{in}\NormalTok{ DF}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?}\StringTok{\textasciigrave{}}\NormalTok{)}
+\NormalTok{\{}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(ans))}
+\NormalTok{  \{}
+    \ControlFlowTok{if}\NormalTok{ (ans }\SpecialCharTok{==} \StringTok{"Placa base (Motherboard)"}\NormalTok{)}
+\NormalTok{    \{}
+\NormalTok{      score\_vector[iterator] }\OtherTok{\textless{}{-}}\NormalTok{ score\_vector[iterator] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \}  }
+\NormalTok{  \}}
+  
+\NormalTok{  iterator }\OtherTok{=}\NormalTok{ iterator }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{\}}
+
+
+
+\NormalTok{DF\_scored }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(DF, score\_vector)}
+\end{Highlighting}
+\end{Shaded}
+
+Ahora veamos la data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{class\_learning }\OtherTok{\textless{}{-}}\NormalTok{ DF\_scored[DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{\textquotesingle{}Leer Documento PDF\textquotesingle{}}\NormalTok{,]}
+
+
+
+\NormalTok{game\_learning }\OtherTok{\textless{}{-}}\NormalTok{ DF\_scored[DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{\textquotesingle{}Jugar PC Simulator\textquotesingle{}}\NormalTok{,]}
+
+\NormalTok{game\_learning\_cortado }\OtherTok{\textless{}{-}} \FunctionTok{head}\NormalTok{(game\_learning, }\FunctionTok{nrow}\NormalTok{(class\_learning) }\SpecialCharTok{{-}} \FunctionTok{nrow}\NormalTok{(game\_learning))}
+
+\FunctionTok{nrow}\NormalTok{(game\_learning\_cortado)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(class\_learning}\SpecialCharTok{$}\NormalTok{score\_vector, game\_learning\_cortado}\SpecialCharTok{$}\NormalTok{score\_vector)}
+\FunctionTok{boxplot}\NormalTok{(data,}\AttributeTok{names =} \FunctionTok{c}\NormalTok{(}\StringTok{"PDF"}\NormalTok{, }\StringTok{"Juego"}\NormalTok{), }\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"Red"}\NormalTok{, }\StringTok{"Blue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+Como podemos ver ahora hay una ligera inclinación a aquellos que
+tuvieron la experiencia tradicional de leer el pdf en la clase. Esto se
+puede deber a un sin fin de cosas, desde que aquellos seleccionados para
+jugar el ``PC Building Simulator'' y llenaron el form eran personas con
+menos tiempo hasta que decidieron llenarlo simplemente de forma no
+honesta. Cabe decir de que la selección de grupos no fue de forma
+aleatoria si no por conveniencia del entrevistador.
+
+Por ultimo veamos las opiniones de los encuestados sobre su metodo
+favorito
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{class\_learning }\OtherTok{\textless{}{-}}\NormalTok{ DF\_scored[DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{\textquotesingle{}Leer Documento PDF\textquotesingle{}}\NormalTok{,]}
+
+
+
+\NormalTok{game\_learning }\OtherTok{\textless{}{-}}\NormalTok{ DF\_scored[DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{\textquotesingle{}Jugar PC Simulator\textquotesingle{}}\NormalTok{,]}
+
+\NormalTok{game\_learning\_cortado }\OtherTok{\textless{}{-}} \FunctionTok{head}\NormalTok{(game\_learning, }\FunctionTok{nrow}\NormalTok{(class\_learning) }\SpecialCharTok{{-}} \FunctionTok{nrow}\NormalTok{(game\_learning))}
+
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(class\_learning}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Nivel de satisfacción al realizar el juego o leer el documento pdf:}\StringTok{\textasciigrave{}}\NormalTok{, game\_learning\_cortado}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Nivel de satisfacción al realizar el juego o leer el documento pdf:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\FunctionTok{boxplot}\NormalTok{(data,}\AttributeTok{names =} \FunctionTok{c}\NormalTok{(}\StringTok{"PDF"}\NormalTok{, }\StringTok{"Juego"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(class\_learning}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Nivel de satisfacción al realizar el juego o leer el documento pdf:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.041667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(game\_learning\_cortado}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Nivel de satisfacción al realizar el juego o leer el documento pdf:}\StringTok{\textasciigrave{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.708333
+\end{verbatim}
+
+Podemos observar de que hay una diferencia inmensa en la opinión de los
+encuestados entre la clase tradicional y los que aprenden utilizando un
+videojuego. habiendo una gran preferencia a los videojuegos.
+
+En conclusión por la escala del proyecto no podemos realmente asegurar
+alguna fuerte inclinación ni para la gamificación ni para la educación
+tradicional. Aunque nuestro estudio sugiere de que la educación
+tradicional parece ser mejor la diferencia es mínima y no es convulsiva.
+Tambien el estudio sugiere de que hay una buena preferencia por la
+Gamificación por parte de los estudiantes. Se necesitan mas estudios de
+una mayor amplitud para tener una conclusión definitiva.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}} \SpecialCharTok{==} \StringTok{"Leer Documento PDF"}\NormalTok{, }\StringTok{"Leer"}\NormalTok{, }\StringTok{"Jugar"}\NormalTok{)}
+
+\NormalTok{.MinaSeg }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x)\{}
+\NormalTok{strs }\OtherTok{\textless{}{-}} \FunctionTok{strsplit}\NormalTok{(x, }\StringTok{":"}\NormalTok{)[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{s }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{as.numeric}\NormalTok{(strs)}\SpecialCharTok{*}\FunctionTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\FunctionTok{return}\NormalTok{(s)}
+\NormalTok{\}}
+
+\NormalTok{MinaSeg }\OtherTok{\textless{}{-}} \FunctionTok{Vectorize}\NormalTok{(.MinaSeg)}
+
+\FunctionTok{boxplot}\NormalTok{(}\FunctionTok{MinaSeg}\NormalTok{(DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Duración de la experiencia}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}\SpecialCharTok{:}\NormalTok{DF\_scored}\SpecialCharTok{$}\NormalTok{score\_vector, }\AttributeTok{varwidth =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{las =} \DecValTok{3}\NormalTok{, }\AttributeTok{cex.axis =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Actividad : Nota"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"tiempo (s)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in (function (x) : NAs introducidos por coerción
+
+## Warning in (function (x) : NAs introducidos por coerción
+
+## Warning in (function (x) : NAs introducidos por coerción
+
+## Warning in (function (x) : NAs introducidos por coerción
+
+## Warning in (function (x) : NAs introducidos por coerción
+
+## Warning in (function (x) : NAs introducidos por coerción
+\end{verbatim}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(DF\_scored}\SpecialCharTok{$}\NormalTok{score\_vector }\SpecialCharTok{\textasciitilde{}}\NormalTok{ DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{¿Cuál es tu nivel de conocimiento (previo a la experiencia) sobre componentes de computadora?}\StringTok{\textasciigrave{}}\SpecialCharTok{:}\NormalTok{DF\_scored}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Qué experiencia realizaste:}\StringTok{\textasciigrave{}}\NormalTok{, }\AttributeTok{las =} \DecValTok{3}\NormalTok{, }\AttributeTok{cex.axis =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Nota"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Conocimiento : Actividad"}\NormalTok{, }\AttributeTok{varwidth =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+Dado que el quiz tiene 8 preguntas, tomaremos una nota aprovatoria como
+obtener de forma correcta al menos 5 de estas por las siguientes
+razones: 1. Por que el minimo de nota aprovatoria regular (tanto de
+universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2
+no seria considerado una nota aprovatoria en la universidad no
+consideramos a los que tengan 4 o menos preguntas correctas como si
+hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3.
+Competitividad un numero razonable de alumnos como podemos ver en el
+promedio
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{passed }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(DF\_scored}\SpecialCharTok{$}\NormalTok{score\_vector }\SpecialCharTok{\textgreater{}} \DecValTok{4}\NormalTok{)}
+\NormalTok{avg }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(passed }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{length}\NormalTok{(passed)}
+\NormalTok{avg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4126984
+\end{verbatim}
+
+pasaron el quiz por lo que consideramos una buena forma de medir el
+exito de cualquiera de los dos modos de estudio.
+
+Ahora podemos ver un grafico del modelo binomial del numero de
+estudiantes que se espera que pasaron el curso
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{dbinom}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{30}\NormalTok{,}\DecValTok{30}\NormalTok{,avg))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{proceso_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+Con una esperanza de:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Esperanza }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(passed)}\SpecialCharTok{*}\NormalTok{avg}
+\NormalTok{Esperanza}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 26
+\end{verbatim}
+
+\end{document}

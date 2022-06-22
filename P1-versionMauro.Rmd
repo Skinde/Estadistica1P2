@@ -1,0 +1,284 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+En este estudio intentamos encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
+
+Primero la carga de data y la instalación de los paquetes.
+
+
+```{r}
+library(readr)
+library(dplyr)
+DF_M <- read_csv("data.csv")
+```
+```{r}
+DF_M$`Duración de la experiencia`
+```
+
+
+La cantidad de observaciones que no han sido completadas al 100%  son : 
+
+```{r}
+Incompletos <-DF_M[!complete.cases(DF_M),]
+count(Incompletos)
+```
+
+Ahora removemos las columnas que no aportan mucho a el resultado de nuestro experimento: 
+
+```{r}
+DF_M$`Submission Date` <- NULL ## La fecha en la que se entrego el test
+DF_M$`Nivel de satisfacción al realizar el juego o leer el documento pdf:` <- NULL ## Variable de satisfaccion que no aporta mucho
+head(DF_M)
+```
+
+Tratamos de limpiar la columna del tiempo total de la experiencia
+
+```{r}
+DF_M$`Duración de la experiencia` <- gsub("\\.", ":", DF_M$`Duración de la experiencia`)
+
+DF_M$`Duración de la experiencia` <- gsub(" ", "", DF_M$`Duración de la experiencia`)
+DF_M$`Duración de la experiencia` <- gsub("minutos", "", DF_M$`Duración de la experiencia`)
+DF_M$`Duración de la experiencia` <- gsub("min", "", DF_M$`Duración de la experiencia`)
+DF_M$`Duración de la experiencia` <- gsub("pm", "", DF_M$`Duración de la experiencia`)
+
+```
+
+Para el filtrado hemos decidido requerir de datos solo a "Qué experiencia realizaste", esto es debido a que no es posible realizar el estudio si no se tiene a cual de los dos grupos pertenece.
+
+```{r}
+
+DF_M %>% filter(!is.na(DF_M$`Qué experiencia realizaste:`))
+#DF_M %>% filter(DF_M$`Duración de la experiencia` > 4)
+
+```
+
+LOGICA PARA TRATAR DE MANTENERlo TODO IGUAL
+
+```{r}
+
+iterator = 1
+for (palabras in DF_M$`Duración de la experiencia`){
+  if(!is.na(palabras)){  
+    if(nchar(palabras)<3){
+            DF_M$`Duración de la experiencia`[iterator] <- paste0(DF_M$`Duración de la experiencia`[iterator],":00")
+            #print(iterator)
+      }
+    }
+          
+    iterator = iterator + 1
+}
+DF_M$`Duración de la experiencia`
+
+```
+
+
+
+
+Luego hemos calculado las respuestas correctas "a mano", hemos considerado que los NA como respuestas validas pero con valor de 0.
+```{r}
+score_vector = c()
+
+for (ans in DF_M$`Regula y proporciona la potencia para que se activen todos los componentes de la PC:`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Fuente de alimentación (PSU) o sistema de alimentación")
+    {
+      score_vector <- append(score_vector, 1)
+    }
+    else
+    {
+      score_vector <- append(score_vector, 0)
+    }  
+  }
+  else
+  {
+    score_vector <- append(score_vector, 0)
+  }
+  
+}
+
+iterator = 1
+for (ans in DF_M$`Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Tarjeta gráfica (GPU)")
+    {
+      score_vector[iterator] = score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+
+iterator = 1
+for (ans in DF_M$`El CPU se calienta muy rápido; por ello, se le conecta un refrigerador o Cooler para regular el calor de este. Esta afirmación es:`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Verdadera")
+    {
+      score_vector[iterator] = score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+iterator = 1
+for (ans in DF_M$`Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Unidad central de procesamiento o Procesador (CPU)")
+    {
+      score_vector[iterator] <- score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+
+iterator = 1
+for (ans in DF_M$`Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Disco Duro")
+    {
+      score_vector[iterator] <- score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+iterator = 1
+for (ans in DF_M$`¿Dónde se conecta o instala la memoria (RAM)?`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Placa base (Motherboard)")
+    {
+      score_vector[iterator] <- score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+iterator = 1
+for (ans in DF_M$`¿Dónde se coloca la pasta térmica?`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Unidad central de procesamiento o Procesador (CPU)")
+    {
+      score_vector[iterator] <- score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+iterator = 1
+for (ans in DF_M$`¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?`)
+{
+  if (!is.na(ans))
+  {
+    if (ans == "Placa base (Motherboard)")
+    {
+      score_vector[iterator] <- score_vector[iterator] + 1
+    }  
+  }
+  
+  iterator = iterator + 1
+}
+
+
+
+DF_M <- cbind(DF_M, score_vector)
+
+
+```
+
+
+SE BORRAN LAS VARIABLES DE PREGUNTAS
+
+```{r}
+DF_M$`Regula y proporciona la potencia para que se activen todos los componentes de la PC:` <- NULL
+DF_M$`Cuenta con sus propios procesadores y memoria interna que procesa los datos de la PC y los representa en forma de texto o gráficas complejas como la de los videojuegos. Nos referimos a:` <- NULL
+DF_M$`El CPU se calienta muy rápido; por ello, se le conecta un refrigerador o Cooler para regular el calor de este. Esta afirmación es:` <- NULL
+DF_M$`Responsable realiza cálculos basados en la interpretación de la información de ciertos componentes y les pasa el resultado a otros. Nos referimos a:` <- NULL
+DF_M$`Almacena todos los datos del sistema operativo, los programas y las fotos, la música y los vídeos del usuario. Es decir, es el dispositivo de almacenamiento del ordenador.` <- NULL
+DF_M$`¿Dónde se conecta o instala la memoria (RAM)?`<- NULL
+DF_M$`¿Dónde se coloca la pasta térmica?` <- NULL
+DF_M$`¿A que parte se conecta el panel frontal de la caja (botón de encendido/apagado, USB, conector de audio, etc)?`<- NULL
+head(DF_M)
+```
+
+CONVIERTO A FACTOR LA VARIABLE "FRECUENCIA VIDEOJUeGOs"
+```{r}
+DF_M$`¿Con qué frecuencia juegas videojuegos?` <- factor(DF_M$`¿Con qué frecuencia juegas videojuegos?`, levels = c("No juego videojuegos","1 vez por semana","3 veces por semana","5 veces por semana","Todos los días"), ordered = TRUE)
+
+DF_M$`¿Con qué frecuencia juegas videojuegos?`
+```
+```{r}
+DF_Scored <- DF_M
+```
+Luego de medir el puntaje hemos dividido las respuestas en los dos grupos correspondientes. Por ultimo hemos hecho una resta de filas debido a que hubo un imbalance de experimentos. Notar que aunque se quitaron filas y se puede considerar **MANIPULACIÓN DE DATOS* dichas columnas fueron removidas sin ningún tipo de "filtro" en particular mas que el orden en el que llegaron. Por lo que, se puede considerar "Aleatorio" las filas que se quitaron. 
+```{r}
+class_learning <- DF_Scored[DF_Scored$`Qué experiencia realizaste:` == 'Leer Documento PDF',]
+
+
+
+game_learning <- DF_Scored[DF_Scored$`Qué experiencia realizaste:` == 'Jugar PC Simulator',]
+
+game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_learning))
+
+nrow(game_learning_cortado)
+
+data <- data.frame(class_learning$score_vector, game_learning_cortado$score_vector)
+boxplot(data,names = c("PDF", "Juego"))
+```
+
+Con 31 participantes por grupo (62 total) no hemos notado una diferencia significante entre el grupo que paso la experiencia de gamificación y el que no. Como idea intentemos ahora tomar todos los NA como datos no validos
+
+
+
+
+
+ESTE CODIGO ARREGLA EL PROBLEMA DE "LEER DOCUMENTO" Y "LEER dOCUMENTO PDF"
+```{r}
+iterator = 1
+for (palabras in DF_M$`Qué experiencia realizaste:`){
+  if(!is.na(palabras)){  
+    if(palabras=="Leer Documento"){
+            DF_M$`Qué experiencia realizaste:`[iterator] <- paste0(DF_M$`Qué experiencia realizaste:`[iterator]," PDF")
+            #print(iterator)
+      }
+    }
+          
+    iterator = iterator + 1
+}
+DF_M$`Qué experiencia realizaste:`
+```
+
+```{r}
+barplot(prop.table(table(DF_M$`Qué experiencia realizaste:`)),col=c("red","blue"),legend.text=c("PC-Simulator","PDF"),ylim=c(0,0.6))
+#unique(DF_M$`Qué experiencia realizaste:`)
+? barplot()
+```
+
+
+
+
+
