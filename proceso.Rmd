@@ -601,26 +601,26 @@ passed_class <- c(class_learning$score_vector > 3)
 avg_class <- sum(passed_class == TRUE)/length(passed_class)
 passed_game <- c(game_learning$score_vector > 3)
 avg_game <- sum(passed_game == TRUE)/length(passed_class)
-plot1 <- dbinom(1:30,30,avg_class)
-plot2 <- dbinom(1:30,30,avg_game)
 c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
 c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
-plot(plot1, col = c1);par(new=TRUE)
-plot(plot2, col = c2)
+plot(dbinom(1:30,30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos");par(new=TRUE, mgp = c(5, 1, 0))
+plot(dbinom(1:30,30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
 ```
-
+Podemos de nuevo notar una pequeña ventaja para los que juegan videojuegos
 
 Ahora un modelo de poisson de las notas
 
 ```{r}
-avg_class <- sum(class_learning$score_vector)/length(passed_class)
+avg_class <- sum(class_learning$score_vector)/(length(passed_class)*7)
 avg_class
-avg_game <- sum(game_learning$score_vector)/length(passed_class)
+avg_game <- sum(game_learning$score_vector)/(length(passed_class)*7)
 avg_game
-plot(dpois(0:7,7,avg_class), col=c1);par(new=TRUE)
-plot(dpois(0:7,7,avg_game), col=c2)
-plot(dpois(0:7,7,1.75))
+plot(dbinom(0:7,7,avg_class), col=c1, ylim=c(0,0.5), ylab="Probabilidad", xlab="Nota", main=NULL);par(new=TRUE, mgp = c(5, 1, 0))
+plot(dbinom(0:7,7,avg_game), col=c2, ylab=NULL, main=NULL, ylim=c(0,0.5));par(new=TRUE, mgp = c(5, 1, 0))
+plot(dbinom(0:7,7,0.25), ylab=NULL, ylim=c(0,0.5), main=NULL)
 ```
+
+De nuevo una pequeña ventaja para los que juegan videojuegos, note que de negro está los que eligen al azar los cual segun el modelo deben tener una nota mucho menor.
 
 # 10. Conclusión
 
