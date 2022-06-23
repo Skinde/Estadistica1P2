@@ -6,15 +6,76 @@ output:
   pdf_document: default
 ---
 
-# Introducción
+# 1. Introducción
 Existen diferentes técnicas de aprendizaje, las que a lo largo del tiempo han evolucionado siempre con el fin de obtener mejores resultados. La diversificación de métodos de enseñanza ha sido parte de este proceso. Para Lozada y Betancour (2016), la necesidad constante de actualizar los distintos métodos de enseñanza, para la mejora de la calidad educativa, es dependiente de los contenidos que se imparten, las necesidades de la sociedad y la cobertura. Es por eso que los enfoques educativos en los que los profesores son vistos como el eje del proceso educativo resulta mecánico y poco productivo, ya que no demanda suficiente interacción por parte del alumno. 
 Los nuevos enfoques educativos deben proporcionar herramientas que impliquen mayor interacción con los alumnos y que seguidamente cumpla con los objetivos de formación que se relacionan con la preparación profesional y desarrollo de competencias que permitan una óptima integración del conocimiento. Es en este punto donde aparece la *Gamificación*. La *Gamificación* es un método de aprendizaje que usa elementos de juego como complemento de los procesos educativos. Esta técnica resulta muy útil tanto en educación básica como educación superior. El carácter lúdico e interactivo que presenta facilita la interiorización de conocimiento a los estudiantes. El objetivo de la *Gamificación* no es crear un juego por crear, sino analogar de alguna manera el sistema puntuación-recompensa-objetivo que funciona en los juegos.  
 Es por ello que en este estudio intentamos encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
 
 En este estudio intentamos cambio encontrar si existe una mejora de la calidad educativa utilizando la *Gamificación* para los estudiantes en UTEC. Para esto, diseñamos un experimento en el que dos grupos (seleccionados por los entrevistadores), uno que utiliza la experiencia tradicional de educación y el otro el cual recibe una educación con un videojuego llamado "Pc building simulator". Ambos experimentos se diseñaron para durar aproximadamente 15 minutos y se diseñaron para cubrir el mismo material.
 
+# 2. Objetivo
+El objetivo de este proyecto es analizar la influencia de la *Gamificación* en estudiantes de la UTEC y compararlo con el uso del método de apredizaje tradicional. Así podremos determinar el método educativo más eficiente.
 
-## Carga de datos y librerías
+# 3. Organización
+## Diagrama de Gant
+
+
+```{r}
+gantt <- read.csv("gant.csv", h=T)
+acts <- c("Primer contacto con equipo de trabajo", "Reunion para definir temas de posible estudio estadistico","Redaccion de informe para el entregable P0", "Espera de Feeback de entregable P0", "Reunion para coordinar el tema final para el estudio estadistico", "Postulacion de propuestas de temas por parte de los miembros", "Seleccion de propuestas de tema por parte de los miembros", "Reunion con Profesor Jose Renom para feeback del tema escogido", "Reunion de coordinacion de parametros del experimento", "Aplicacion del experimentos al publico objetivo", "Filtracion de data en R", "Desarrollo de Informe en Rnote", "Desarrollo de Presentacion Oral en R Presentations", "Entrega de Informe y Presentacion a Canvas")
+els <- c("Entregable P0", "Tema de Investigacion", "Parametros del experimento", "Desarrollo del Experimento", "Entregable P1")
+
+g.gantt <- gather(gantt, "state", "date", 4:5) %>% mutate(date = as.Date(date, "%Y.%m.%d"), Actividad=factor(Actividad, acts[length(acts):1]), Elemento.del.Proyecto =factor(Elemento.del.Proyecto, els))
+
+actcols <- c("#548235", "#2E75B6", "#BF9000", "#7030A0", "#cd6600")
+ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)) +
+  geom_line(size = 10) +
+  scale_color_manual(values=actcols, name="Project component") +
+  labs(x="Semana Ciclo 2022-1", y=NULL, title="Project timeline") +
+  scale_x_date(breaks=seq.Date(as.Date("2022-03-21"), as.Date("2022-5-06"), "weeks"), labels=c(1,2,3,4,5,6,7)) +
+  theme_gray(base_size=14)
+
+
+```
+
+# 4. Población
+Estudiantes universitarios del Perú.
+
+# 5. Unidad muestral
+Estudiante de la Universidad de Ingeniería y Tecnología - UTEC.
+
+# 6. Tamaño de la muestra
+90 estudiantes de UTEC.
+
+# 7. Representatividad de la muestra
+El tipo de muestreo es el aleatorio simple (MAS).
+
+# 8. Estrategia de recolección de datos
+
+
+# 9. Variables
+## 9.1 Númerica
+* Continua 
+  +  Edad: Entero positivo de 16 hasta 30.
+  +  Experiencia armando computadoras: Entero positivo del 1 al 5.
+  +  Conocimiento de elementos: Entero positivo del 1 al 5.
+  +  Frecuencia de juegos de videojuegos: Entero positivo desde 1 a 7, con intervalos de 2.
+  +  Puntaje final del test: Entero positivo del 1 al 8.
+* Discreta
+  +  Tiempo de la experiencia: Número no negativo.
+
+## 9.2 Categórica
+* Nominal
+  + Correo
+  + Sexo: Hombre, mujer u otras opciones.
+  + Carrera: Carrera que estudia para formación profesional.
+  + Experiencia realizada: Juego de STEAM o lectura de PDF.
+* Ordinal
+  + Ciclo: Ciclo actual que cursa.
+
+# 10. Análisis descriptivo
+
+## 10.1 Carga de datos y librerías
 Primero la carga de data y la instalación de los paquetes.
 
 
@@ -31,7 +92,7 @@ gantt <- read.csv("gant.csv", h=T)
 DF <- read_csv("data.csv")
 ```
 
-## Renombramiento de las variables
+## 10.2 Renombramiento de las variables
 
 ```{r}
 
@@ -57,7 +118,7 @@ DF %>% rename(correo=`Ingrese su correo de UTEC!!`, tiempo=`Duración de la expe
               ) ->DF
 ```
 
-## Limpieza de datos
+## 10.3 Limpieza de datos
 ```{r}
 DF$tiempo <- gsub("\\.", ":", DF$tiempo)
 DF$tiempo <- gsub(" ", "", DF$tiempo)
@@ -108,7 +169,7 @@ Para el filtrado hemos decidido requerir de datos solo a "Qué experiencia reali
 
 
 
-## Calculo de puntaje
+## 10.4 Calculo de puntaje
 Luego hemos calculado las respuestas correctas "a mano", hemos considerado que los NA como respuestas validas pero con valor de 0.
 ```{r}
 score_vector = c()
@@ -354,37 +415,11 @@ plot(DF_scored$tiempo, DF_scored$score_vector, pch = 20, col = rgb(0, 0, 0, 0.2)
 
 ```
 
-
-
 No parece haber una influencia del tiempo 
 
 Con 31 participantes por grupo (62 total) no hemos notado una diferencia significante entre el grupo que paso la experiencia de gamificación y el que no. Como idea intentemos ahora tomar todos los NA como datos no validos
 
-
-
-
-## INICIO GANT
-
-
-```{r}
-gantt <- read.csv("gant.csv", h=T)
-acts <- c("Primer contacto con equipo de trabajo", "Reunion para definir temas de posible estudio estadistico","Redaccion de informe para el entregable P0", "Espera de Feeback de entregable P0", "Reunion para coordinar el tema final para el estudio estadistico", "Postulacion de propuestas de temas por parte de los miembros", "Seleccion de propuestas de tema por parte de los miembros", "Reunion con Profesor Jose Renom para feeback del tema escogido", "Reunion de coordinacion de parametros del experimento", "Aplicacion del experimentos al publico objetivo", "Filtracion de data en R", "Desarrollo de Informe en Rnote", "Desarrollo de Presentacion Oral en R Presentations", "Entrega de Informe y Presentacion a Canvas")
-els <- c("Entregable P0", "Tema de Investigacion", "Parametros del experimento", "Desarrollo del Experimento", "Entregable P1")
-
-g.gantt <- gather(gantt, "state", "date", 4:5) %>% mutate(date = as.Date(date, "%Y.%m.%d"), Actividad=factor(Actividad, acts[length(acts):1]), Elemento.del.Proyecto =factor(Elemento.del.Proyecto, els))
-
-actcols <- c("#548235", "#2E75B6", "#BF9000", "#7030A0", "#cd6600")
-ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)) +
-  geom_line(size = 10) +
-  scale_color_manual(values=actcols, name="Project component") +
-  labs(x="Semana Ciclo 2022-1", y=NULL, title="Project timeline") +
-  scale_x_date(breaks=seq.Date(as.Date("2022-03-21"), as.Date("2022-5-06"), "weeks"), labels=c(1,2,3,4,5,6,7)) +
-  theme_gray(base_size=14)
-
-
-```
-
-## FILTRADO DE NA's
+## 10.5 FILTRADO DE NA's
 
 Ahora filtraremos todos los NA y los consideramos como resultados ivalidos not que esto se puede considerar **Manipulación de datos**. Pero, el lector informado puede ver los resultados anteriores y ver las diferencia que trae.
 
@@ -537,7 +572,7 @@ En conclusión por la escala del proyecto no podemos realmente asegurar alguna f
 
 
 
-## ANALISIS PROBABILISTICO
+# 9. Análisis probabilístico
 
 Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el minimo de nota aprovatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprovatoria en la universidad no consideramos a los que tengan 3 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio
 ```{r}
@@ -587,7 +622,7 @@ plot(dpois(0:7,7,avg_game), col=c2)
 plot(dpois(0:7,7,1.75))
 ```
 
-##Conclusión
+# 10. Conclusión
 
 En conclusión por la escala del proyecto no podemos realmente asegurar alguna fuerte inclinación ni para la gamificación ni para la educación tradicional. Aunque nuestro estudio sugiere de que la educación tradicional parece ser mejor la diferencia es mínima y no es convulsiva. Tambien el estudio sugiere de que hay una buena preferencia por la Gamificación por parte de los estudiantes. Se necesitan mas estudios de una mayor amplitud para tener una conclusión definitiva.
 
