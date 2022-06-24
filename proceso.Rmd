@@ -310,7 +310,7 @@ game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_le
 
 
 data <- data.frame(class_learning$score_vector, game_learning_cortado$score_vector)
-boxplot(data,names = c("PDF", "Juego"))
+boxplot(data,names = c("PDF", "Juego"), col=c("Red", "Blue"))
 ```
 
 Tambien podemos medir la nota contra la experiencia de cada alumno
@@ -569,7 +569,7 @@ game_learning_cortado <- head(game_learning, nrow(class_learning) - nrow(game_le
 data <- data.frame(class_learning$satisfaccion, game_learning_cortado$satisfaccion)
 
 
-boxplot(data,names = c("PDF", "Juego"))
+boxplot(data,names = c("PDF", "Juego"), col=c("red", "blue"))
 #mean(class_learning$satisfaccion)
 #mean(game_learning_cortado$satisfaccion)
 ```
@@ -614,6 +614,7 @@ c1 <- rgb(255,0,0,max = 255, alpha = 255, names = "lt.blue")
 c2 <- rgb(0,0,255, max = 255, alpha = 255, names = "lt.pink")
 plot(dbinom(1:30,30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos");par(new=TRUE, mgp = c(5, 1, 0))
 plot(dbinom(1:30,30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
+legend(1, 0.2, legend=c("PDF", "Juego"), col=c("red", "blue"), lty=1:1, cex=0.8)
 ```
 Podemos de nuevo notar una pequeña ventaja para los que juegan videojuegos
 
@@ -628,6 +629,7 @@ c1 <- rgb(255,0,0,max = 255, alpha = 255, names = "lt.blue")
 c2 <- rgb(0,0,255, max = 255, alpha = 255, names = "lt.pink")
 plot(dgeom(1:30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos antes de un fallo");par(new=TRUE, mgp = c(5, 1, 0))
 plot(dgeom(1:30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
+legend(22, 0.2, legend=c("PDF", "Juego"), col=c("red", "blue"), lty=1:1, cex=0.8)
 ```
 muy similares.
 
@@ -642,11 +644,10 @@ avg_game
 plot(dbinom(0:7,7,avg_class), col=c1, ylim=c(0,0.5), ylab="Probabilidad", xlab="Nota", main=NULL);par(new=TRUE, mgp = c(5, 1, 0))
 plot(dbinom(0:7,7,avg_game), col=c2, ylab=NULL, main=NULL, ylim=c(0,0.5));par(new=TRUE, mgp = c(5, 1, 0))
 plot(dbinom(0:7,7,0.25), ylab=NULL, ylim=c(0,0.5), main=NULL)
+legend(6.2, 0.5, legend=c("PDF", "Juego", "Azar"), col=c("red", "blue", "black"), lty=1:1:1, cex=0.8)
 ```
 
 De nuevo una pequeña ventaja para los que juegan videojuegos, note que de negro está los que eligen al azar los cual segun el modelo deben tener una nota mucho menor.
-
-
 
 # 10. Conclusión
 
