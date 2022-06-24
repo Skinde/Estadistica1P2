@@ -601,12 +601,27 @@ passed_class <- c(class_learning$score_vector > 3)
 avg_class <- sum(passed_class == TRUE)/length(passed_class)
 passed_game <- c(game_learning$score_vector > 3)
 avg_game <- sum(passed_game == TRUE)/length(passed_class)
-c1 <- rgb(173,216,230,max = 255, alpha = 255, names = "lt.blue")
-c2 <- rgb(255,192,203, max = 255, alpha = 255, names = "lt.pink")
+c1 <- rgb(255,0,0,max = 255, alpha = 255, names = "lt.blue")
+c2 <- rgb(0,0,255, max = 255, alpha = 255, names = "lt.pink")
 plot(dbinom(1:30,30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos");par(new=TRUE, mgp = c(5, 1, 0))
 plot(dbinom(1:30,30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
 ```
 Podemos de nuevo notar una pequeña ventaja para los que juegan videojuegos
+
+En un modelo gemoetrico cuantos exitos tendriamos antes de ver el primer fallo
+
+```{r}
+passed_class <- c(class_learning$score_vector > 3)
+avg_class <- sum(passed_class == TRUE)/length(passed_class)
+passed_game <- c(game_learning$score_vector > 3)
+avg_game <- sum(passed_game == TRUE)/length(passed_class)
+c1 <- rgb(255,0,0,max = 255, alpha = 255, names = "lt.blue")
+c2 <- rgb(0,0,255, max = 255, alpha = 255, names = "lt.pink")
+plot(dgeom(1:30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos antes de un fallo");par(new=TRUE, mgp = c(5, 1, 0))
+plot(dgeom(1:30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
+```
+muy similares.
+
 
 Ahora un modelo de poisson de las notas
 
@@ -621,6 +636,8 @@ plot(dbinom(0:7,7,0.25), ylab=NULL, ylim=c(0,0.5), main=NULL)
 ```
 
 De nuevo una pequeña ventaja para los que juegan videojuegos, note que de negro está los que eligen al azar los cual segun el modelo deben tener una nota mucho menor.
+
+
 
 # 10. Conclusión
 
