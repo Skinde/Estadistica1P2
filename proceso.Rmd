@@ -95,13 +95,8 @@ Cada estudiante fue contactado por WhatsApp o Discord. Se agendaba una reunión 
 
 # 10. Análisis descriptivo
 
-## 10.1 Carga de datos y librerías
-Primero la carga de data y la instalación de los paquetes.
 
-
-
-
-## 10.2 Renombramiento de las variables
+## 10.1 Renombramiento de las variables
 
 ```{r}
 
