@@ -574,27 +574,32 @@ Podemos observar de que hay una diferencia inmensa en la opinión de los encuest
 
 # 9. Análisis probabilístico
 
-Dado que el quiz tiene 7 preguntas, tomaremos una nota aprovatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el minimo de nota aprovatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprovatoria en la universidad no consideramos a los que tengan 3 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio
+Veremos un análisis probabilístico en el que tomaremos en cuenta la influencia del azar modelaremos los resultados para intentar visualizar una ventaja de algún método.
+
+Dado que el quiz tiene 7 preguntas, tomaremos una nota aprobatoria como obtener de forma correcta al menos 5 de estas por las siguientes razones: 1. Por que el mínimo de nota aprobatoria regular (tanto de universidad como de colegio) en el Perú es el 11/20 dado que 10/20 1/2 no seria considerado una nota aprobatoria en la universidad no consideramos a los que tengan 3 o menos preguntas correctas como si hubieran pasado el quiz. 2. Todas las preguntas tienen el mismo peso 3. Competitividad un numero razonable de alumnos como podemos ver en el promedio pasaron dicho examen.
 ```{r}
 passed <- c(DF_scored$score_vector > 3)
 avg <- sum(passed == TRUE)/length(passed)
 avg
 ```
-pasaron el quiz por lo que consideramos una buena forma de medir el exito de cualquiera de los dos modos de estudio. 
+por lo que consideramos una buena forma de medir el éxito de cualquiera de los dos modos de estudio. 
 
-Ahora podemos ver un gráfico del modelo binomial del numero de estudiantes que se espera que pasaron el curso este es simplemente para visualizar.
+Ahora podemos ver un gráfico del modelo binomio del numero de estudiantes que se espera que pasaron el curso este gráfico es simplemente para visualizar.
 ```{r}
-plot(dbinom(1:30,30,avg), xlab="Numero de intentos", ylab="Probabilidad")
+plot(dbinom(1:68,68,avg), xlab="Numero de intentos", ylab="Probabilidad")
 ```
 
-Con una esperanza de:
+Esperamos que pasen la siguiente cantidad de alumnos:
 
 ```{r}
-Esperanza <- length(passed)*avg
+Esperanza <- length(DF_scored$score_vector)*avg
 Esperanza
 ```
-
-Ahora los modelos de las personas que pasaron el test pero separando los que aprendieron con el pdf de los que aprendieron con el juego aquí podremos ver si hay una diferencia de los estudiantes aprobados entre cada metodo.
+Del total de:
+```{r}
+length(DF_scored$score_vector)
+```
+Ahora los modelos de las personas que pasaron el test pero separando los que aprendieron con el pdf de los que aprendieron con el juego aquí podremos ver si hay una diferencia de los estudiantes aprobados entre cada método.
 
 ```{r}
 passed_class <- c(class_learning$score_vector > 3)
@@ -603,8 +608,8 @@ passed_game <- c(game_learning$score_vector > 3)
 avg_game <- sum(passed_game == TRUE)/length(passed_class)
 c1 <- rgb(255,0,0,max = 255, alpha = 255, names = "lt.blue")
 c2 <- rgb(0,0,255, max = 255, alpha = 255, names = "lt.pink")
-plot(dbinom(1:30,30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos");par(new=TRUE, mgp = c(5, 1, 0))
-plot(dbinom(1:30,30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
+plot(dbinom(1:68,68,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos");par(new=TRUE, mgp = c(5, 1, 0))
+plot(dbinom(1:68,68,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
 legend(1, 0.2, legend=c("PDF", "Juego"), col=c("red", "blue"), lty=1:1, cex=0.8)
 ```
 Podemos de nuevo notar una pequeña ventaja para los que juegan videojuegos
@@ -618,8 +623,8 @@ passed_game <- c(game_learning$score_vector > 3)
 avg_game <- sum(passed_game == TRUE)/length(passed_class)
 c1 <- rgb(255,0,0,max = 255, alpha = 255, names = "lt.blue")
 c2 <- rgb(0,0,255, max = 255, alpha = 255, names = "lt.pink")
-plot(dgeom(1:30,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos antes de un fallo");par(new=TRUE, mgp = c(5, 1, 0))
-plot(dgeom(1:30,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
+plot(dgeom(1:68,avg_class), col = c1, ylab = "Probabilidad", ylim=c(0,0.2), xlab="Numero de intentos antes de un fallo");par(new=TRUE, mgp = c(5, 1, 0))
+plot(dgeom(1:68,avg_game), col = c2, ylab=NULL,ylim=c(0,0.2))
 legend(22, 0.2, legend=c("PDF", "Juego"), col=c("red", "blue"), lty=1:1, cex=0.8)
 ```
 demasiado similares pequeña ventaja para el PDF.
@@ -635,10 +640,10 @@ avg_game
 plot(dbinom(0:7,7,avg_class), col=c1, ylim=c(0,0.5), ylab="Probabilidad", xlab="Nota", main=NULL);par(new=TRUE, mgp = c(5, 1, 0))
 plot(dbinom(0:7,7,avg_game), col=c2, ylab=NULL, main=NULL, ylim=c(0,0.5));par(new=TRUE, mgp = c(5, 1, 0))
 plot(dbinom(0:7,7,0.25), ylab=NULL, ylim=c(0,0.5), main=NULL)
-legend(6.2, 0.5, legend=c("PDF", "Juego", "Azar"), col=c("red", "blue", "black"), lty=1:1:1, cex=0.8)
+legend(6.2, 0.5, legend=c("PDF", "Juego", "Azar"), col=c("red", "blue", "black"), lty=1:1, cex=0.8)
 ```
 
-Una pequeña ventaja para los que juegan videojuegos, note que de negro está los que eligen al azar los cuales obtienen una nota mucho menor.
+Una pequeña ventaja para los que juegan Videjuegos, note que de negro está los que eligen al azar los cuales obtienen una nota mucho menor.
 
 # 10. Conclusión
 
