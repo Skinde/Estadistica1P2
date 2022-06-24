@@ -172,6 +172,48 @@ for (palabras in DF$tipo_experiencia){
 Para el filtrado hemos decidido requerir de datos solo a "Qué experiencia realizaste", esto es debido a que no es posible realizar el estudio si no se tiene a cual de los dos grupos pertenece.
 
 
+
+Encuestados x carrera ( pantalla completa para verlo mejor)
+
+```{r}
+
+DF$carrera[DF$carrera == 'Ingeniería Civil'] <- 'IC'
+DF$carrera[DF$carrera == 'Ingeniería Mecatrónica'] <- 'IMt'
+DF$carrera[DF$carrera == 'Ingeniería de la energia'] <- 'IE'
+DF$carrera[DF$carrera == 'Ciencias De La Computación'] <- 'CS'
+DF$carrera[DF$carrera == 'Bioingeniería'] <- 'BioIng'
+DF$carrera[DF$carrera == 'Ingeniería Química'] <- 'IQ'
+DF$carrera[DF$carrera == 'Ingeniería Industrial'] <- 'II'
+DF$carrera[DF$carrera == 'Ingeniería Mecánica'] <- 'IMn'
+DF$carrera[DF$carrera == 'Ingeniería Electronica'] <- 'IElectro'
+DF$carrera[DF$carrera == 'Ingeniería Ambiental'] <- 'IA'
+```
+
+```{r}
+
+
+g = ggplot(DF, aes(carrera, fill=tipo_experiencia) ) +
+  labs(title = "Cantidad de encuestados por carrera")+ylab("Personas encuestadas")+xlab("Carreras") +
+  theme(plot.title = element_text(size = rel(2), colour = "blue"))
+
+
+g+geom_bar(position="dodge") + scale_fill_manual(values = alpha(c("orange", "blue"), 1)) +
+  theme(axis.title.x = element_text(face="bold", size=10),axis.title.y =  element_text(face="bold", size=10))
+```
+Encuestados x ciclo
+
+
+```{r}
+
+g = ggplot(DF, aes(ciclo, fill=tipo_experiencia) ) +
+  labs(title = "Cantidad de encuestados por ciclo")+ylab("Personas encuestadas") +
+  theme(plot.title = element_text(size = rel(2), colour = "blue"))
+
+g+geom_bar(position="dodge") + scale_fill_manual(values = alpha(c("orange", "blue"), 1)) +
+  theme(axis.title.x = element_text(face="bold", size=10))  
+```
+
+
 ## 10.4 Calculo de puntaje
 Luego hemos calculado las respuestas correctas "a mano", hemos considerado que los NA como respuestas validas pero con valor de 0.
 ```{r}
