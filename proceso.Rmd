@@ -16,7 +16,7 @@ En este estudio intentamos cambio encontrar si existe una mejora de la calidad e
 # 2. Objetivo
 El objetivo de este proyecto es analizar la influencia de la *Gamificación* en estudiantes de la UTEC y compararlo con el uso del método de apredizaje tradicional. Así podremos determinar el método educativo más eficiente.
 
-# 3. Organización
+# 3. Planificación
 ## Diagrama de Gant
 
 
@@ -51,7 +51,7 @@ Estudiante de la Universidad de Ingeniería y Tecnología - UTEC.
 El tipo de muestreo es el aleatorio simple (MAS).
 
 # 8. Estrategia de recolección de datos
-
+Cada estudiante fue contactado por WhatsApp o Discord. Se agendaba una reunión por Zoom para la realización del experimento. Cada test era proporcionado al estudiante según el criterio del anfitrión. Es por esto que la recolección de datos fue por conveniencia.  
 
 # 9. Variables
 ## 9.1 Númerica
