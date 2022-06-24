@@ -19,7 +19,7 @@ library(dplyr)
 + La gamificación de la educación es el uso de las mecánicas de los juegos en el ambiente educativo
 + La educación y los juegos tienen mucho en común.
 + La diferencia se da en cómo se enseñan dichas mecánicas y cómo se recompensa o castiga el aprendizaje de las mismas
-+ Se está investigando la posibilidad de transformar dichas mecánicas, su eficacia y su viabilidad.
++ El objetivo del estudio es analizar la posibilidad de transformar dichas mecánicas, su eficacia y su viabilidad.
  
  <center>
 
