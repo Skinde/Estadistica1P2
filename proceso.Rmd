@@ -6,6 +6,20 @@ output:
   pdf_document: default
 ---
 
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(tidyverse)
+library(lubridate)
+
+
+gantt <- read.csv("gant.csv", h=T)
+DF <- read_csv("data.csv")
+```
+
+
 # 1. Introducción
 Existen diferentes técnicas de aprendizaje, las que a lo largo del tiempo han evolucionado siempre con el fin de obtener mejores resultados. La diversificación de métodos de enseñanza ha sido parte de este proceso. Para Lozada y Betancour (2016), la necesidad constante de actualizar los distintos métodos de enseñanza, para la mejora de la calidad educativa, es dependiente de los contenidos que se imparten, las necesidades de la sociedad y la cobertura. Es por eso que los enfoques educativos en los que los profesores son vistos como el eje del proceso educativo resulta mecánico y poco productivo, ya que no demanda suficiente interacción por parte del alumno. 
 Los nuevos enfoques educativos deben proporcionar herramientas que impliquen mayor interacción con los alumnos y que seguidamente cumpla con los objetivos de formación que se relacionan con la preparación profesional y desarrollo de competencias que permitan una óptima integración del conocimiento. Es en este punto donde aparece la *Gamificación*. La *Gamificación* es un método de aprendizaje que usa elementos de juego como complemento de los procesos educativos. Esta técnica resulta muy útil tanto en educación básica como educación superior. El carácter lúdico e interactivo que presenta facilita la interiorización de conocimiento a los estudiantes. El objetivo de la *Gamificación* no es crear un juego por crear, sino analogar de alguna manera el sistema puntuación-recompensa-objetivo que funciona en los juegos.  
@@ -20,20 +34,26 @@ El objetivo de este proyecto es analizar la influencia de la *Gamificación* en 
 ## Diagrama de Gant
 
 
+
 ```{r}
-gantt <- read.csv("gant.csv", h=T)
-acts <- c("Primer contacto con equipo de trabajo", "Reunion para definir temas de posible estudio estadistico","Redaccion de informe para el entregable P0", "Espera de Feeback de entregable P0", "Reunion para coordinar el tema final para el estudio estadistico", "Postulacion de propuestas de temas por parte de los miembros", "Seleccion de propuestas de tema por parte de los miembros", "Reunion con Profesor Jose Renom para feeback del tema escogido", "Reunion de coordinacion de parametros del experimento", "Aplicacion del experimentos al publico objetivo", "Filtracion de data en R", "Desarrollo de Informe en Rnote", "Desarrollo de Presentacion Oral en R Presentations", "Entrega de Informe y Presentacion a Canvas")
-els <- c("Entregable P0", "Tema de Investigacion", "Parametros del experimento", "Desarrollo del Experimento", "Entregable P1")
+
+
+acts <- gantt$Actividad
+els <- unique(gantt$Elemento.del.Proyecto)
+
 
 g.gantt <- gather(gantt, "state", "date", 4:5) %>% mutate(date = as.Date(date, "%Y.%m.%d"), Actividad=factor(Actividad, acts[length(acts):1]), Elemento.del.Proyecto =factor(Elemento.del.Proyecto, els))
 
-actcols <- c("#548235", "#2E75B6", "#BF9000", "#7030A0", "#cd6600")
+actcols <- c("#FF0000", "#2E75B6", "#008000", "#FFD700", "#800080",	"#F5DEB3")
+
+
 ggplot(g.gantt, aes(date, Actividad, colour = Elemento.del.Proyecto, group=Item)) +
-  geom_line(size = 10) +
-  scale_color_manual(values=actcols, name="Project component") +
-  labs(x="Semana Ciclo 2022-1", y=NULL, title="Project timeline") +
-  scale_x_date(breaks=seq.Date(as.Date("2022-03-21"), as.Date("2022-5-06"), "weeks"), labels=c(1,2,3,4,5,6,7)) +
-  theme_gray(base_size=14)
+  geom_line(size = 5) +
+  scale_color_manual(values=actcols, name="Elementos del proyecto") +
+  labs(x="Semana Ciclo 2022-1", y=NULL, title="                   Diagrama Gant") +
+  scale_x_date(breaks=seq.Date(as.Date("2022-03-21"), as.Date("2022-6-26"), "weeks"), labels=c(1,2,3,4,5,6,7,8,9,10,11,12,13,14)) +
+  theme_gray(base_size=11)
+
 
 
 ```
@@ -79,18 +99,7 @@ Cada estudiante fue contactado por WhatsApp o Discord. Se agendaba una reunión 
 Primero la carga de data y la instalación de los paquetes.
 
 
-```{r}
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(stringr)
-library(tidyverse)
-library(lubridate)
 
-
-gantt <- read.csv("gant.csv", h=T)
-DF <- read_csv("data.csv")
-```
 
 ## 10.2 Renombramiento de las variables
 
